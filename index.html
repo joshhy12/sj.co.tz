@@ -1,61 +1,1327 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <meta
-      name="description"
-      content="SJ Softwares offers Web3-inspired IT solutions, including software development, web design, mobile apps, and tech consultancy."
-    />
-    <meta
-      name="keywords"
-      content="custom software, web development, IT consultancy, mobile apps, Web3, SJ Softwares"
-    />
+    <meta name="description" content="SJ Softwares offers Web3-inspired IT solutions, including software development, web design, mobile apps, and tech consultancy." />
+    <meta name="keywords" content="custom software, web development, IT consultancy, mobile apps, Web3, SJ Softwares" />
     <meta name="author" content="SJ Softwares" />
-
-    <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "SJ Softwares",
-  "url": "https://www.sjsoftwares.com",
-  "logo": "https://www.sjsoftwares.com/images/logo.png",
-  "foundingDate": "2015",
-  "description": "SJ Softwares is a Web3-inspired IT company offering custom software development, web development, graphic design, mobile app development, and IT consultancy services.",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "Your Street, Building Name",
-    "addressLocality": "Arusha",
-    "addressRegion": "TZ",
-    "postalCode": "00000",
-    "addressCountry": "Tanzania"
-  },
-  "contactPoint": {
-    "@type": "ContactPoint",
-    "telephone": "+255764816424",
-    "contactType": "Customer Support",
-    "areaServed": "TZ",
-    "availableLanguage": ["English", "Swahili"]
-  },
-  "sameAs": [
-    "https://www.facebook.com/sjsoftwares",
-    "https://www.instagram.com/sjsoftwares",
-    "https://www.linkedin.com/company/sjsoftwares"
-  ]
-}
-</script>
-
-
     <title>SJ Softwares | Web3-Inspired IT Solutions</title>
     <link rel="icon" type="image/svg+xml" href="images/logo.png" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
-    <link rel="stylesheet" href="css/styles.css" />
-  </head>
-  <body>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #1a237e;
+            --secondary-blue: #303f9f;
+            --dark-red: #b71c1c;
+            --light-red: #e53935;
+            --white: #ffffff;
+            --light-gray: #f5f5f5;
+            --dark-gray: #333333;
+            --neon-blue: #00f2ff;
+            --neon-red: #ff2a6d;
+            --dark-bg: #0a0a1a;
+            
+            /* Glassmorphism variables */
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            --glass-blur: blur(10px);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 50%, var(--dark-red) 100%);
+            color: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="a" cx=".5" cy=".5" r=".5"><stop offset="0%" stop-color="%23ffffff" stop-opacity=".05"/><stop offset="100%" stop-color="%23ffffff" stop-opacity="0"/></radialGradient></defs><rect width="100%" height="100%" fill="url(%23a)"/></svg>');
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* Particle Background */
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            top: 0;
+            left: 0;
+        }
+
+        .glass {
+            background: var(--glass-bg);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow);
+            border-radius: 16px;
+        }
+
+        .container {
+            width: 95%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Floating Elements */
+        .floating-element {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(40px);
+            opacity: 0.3;
+            z-index: 0;
+        }
+
+        .floating-1 {
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, var(--neon-blue), transparent 70%);
+            top: 20%;
+            left: 10%;
+            animation: float 15s infinite ease-in-out;
+        }
+
+        .floating-2 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, var(--neon-red), transparent 70%);
+            bottom: 10%;
+            right: 15%;
+            animation: float 18s infinite ease-in-out reverse;
+        }
+
+        /* Header Styles */
+        header {
+            padding: 15px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            background: rgba(26, 35, 126, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 3%;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 55px;
+            background: var(--light-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+            box-shadow: 0 0 15px rgba(229, 57, 53, 0.5);
+        }
+
+        .logo-text h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--white);
+        }
+
+        .logo-text span {
+            color: var(--neon-red);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            padding: 5px 0;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--light-red);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            padding: 100px 0 50px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 650px;
+            z-index: 2;
+        }
+
+        .hero h2 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            background: linear-gradient(90deg, var(--white), var(--neon-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: fadeInDown 1s ease, textGlow 2s infinite alternate;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            animation: fadeIn 1.5s ease;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: var(--light-red);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(229, 57, 53, 0.3);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn:hover {
+            background: var(--dark-red);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(229, 57, 53, 0.4);
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--dark-red), var(--neon-red));
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .btn:hover::before {
+            opacity: 1;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--neon-blue);
+            box-shadow: 0 0 15px rgba(0, 242, 255, 0.2);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(0, 242, 255, 0.1);
+            box-shadow: 0 0 30px rgba(0, 242, 255, 0.4);
+            transform: translateY(-5px);
+        }
+
+        .btn i {
+            margin-left: 8px;
+            font-size: 1.2rem;
+        }
+
+        .hero-visual {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50%;
+            height: 70%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .floating-card {
+            position: absolute;
+            width: 200px;
+            height: 250px;
+            border-radius: 16px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.5s ease;
+        }
+
+        .floating-card:nth-child(1) {
+            top: 10%;
+            right: 10%;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            transform: rotate(5deg);
+        }
+
+        .floating-card:nth-child(2) {
+            top: 40%;
+            right: 25%;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(15px);
+            transform: rotate(-3deg);
+        }
+
+        .floating-card:nth-child(3) {
+            bottom: 15%;
+            right: 15%;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            transform: rotate(2deg);
+        }
+
+        .floating-card i {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: var(--light-red);
+        }
+
+        .floating-card h3 {
+            font-size: 1rem;
+            margin-bottom: 10px;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--neon-blue), var(--neon-red));
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .section-title p {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0.8;
+        }
+
+        /* Services Section */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            padding: 30px;
+            border-radius: 16px;
+            transition: all 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 242, 255, 0.1), rgba(255, 42, 109, 0.1));
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+
+        .service-card:hover::before {
+            opacity: 1;
+        }
+
+        .service-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            font-size: 1.8rem;
+            color: var(--light-red);
+        }
+
+        .service-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .service-content h3::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--neon-blue), var(--neon-red));
+            bottom: -8px;
+            left: 0;
+            border-radius: 2px;
+        }
+
+        .service-content p {
+            opacity: 0.9;
+            flex-grow: 1;
+            margin-bottom: 20px;
+        }
+
+        .service-link {
+            display: inline-flex;
+            align-items: center;
+            color: var(--neon-blue);
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        .service-link:hover {
+            color: var(--neon-red);
+            transform: translateX(5px);
+        }
+
+        .service-link i {
+            margin-left: 8px;
+            transition: transform 0.3s;
+        }
+
+        .service-link:hover i {
+            transform: translateX(5px);
+        }
+
+        /* Projects Section */
+        .projects {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .projects::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 L0,100 Z" fill="none" stroke="rgba(0,242,255,0.05)" stroke-width="0.5"/></svg>');
+            background-size: 50px 50px;
+            opacity: 0.5;
+            z-index: 0;
+        }
+
+        .projects-slider {
+            position: relative;
+            padding: 20px 0;
+        }
+
+        .projects-container {
+            display: flex;
+            gap: 30px;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            padding: 20px 0;
+            scrollbar-width: none;
+        }
+
+        .projects-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .project-card {
+            min-width: 350px;
+            padding: 30px;
+            border-radius: 16px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 242, 255, 0.1), rgba(255, 42, 109, 0.1));
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+
+        .project-card:hover::before {
+            opacity: 1;
+        }
+
+        .project-image {
+            height: 200px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: var(--light-red);
+        }
+
+        .project-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .project-info h3::after {
+            content: '';
+            position: absolute;
+            width: 30px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--neon-blue), var(--neon-red));
+            bottom: -8px;
+            left: 0;
+        }
+
+        .project-info p {
+            margin-bottom: 20px;
+            opacity: 0.9;
+            flex-grow: 1;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            background: linear-gradient(135deg, var(--neon-blue), var(--neon-red));
+            color: var(--white);
+            padding: 10px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 242, 255, 0.2);
+        }
+
+        .project-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 242, 255, 0.3);
+        }
+
+        .project-link i {
+            margin-left: 8px;
+            transition: transform 0.3s;
+        }
+
+        .project-link:hover i {
+            transform: translateX(5px);
+        }
+
+        .slider-nav {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .slider-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: var(--white);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .slider-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* About Section - New Design */
+        .about {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 80%, rgba(255, 42, 109, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(0, 242, 255, 0.1) 0%, transparent 50%);
+            z-index: 0;
+        }
+
+        .about-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .about-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, var(--neon-blue), var(--white));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .about-content p {
+            margin-bottom: 40px;
+            opacity: 0.9;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .stat-item {
+            padding: 30px;
+            border-radius: 16px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .stat-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            background: rgba(255, 255, 255, 0.1);
+            font-size: 2rem;
+            color: var(--light-red);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, var(--neon-blue), var(--neon-red));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stat-text {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        /* Testimonials Section - New Design */
+        .testimonials {
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonials::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(0, 242, 255, 0.05) 0%, transparent 70%);
+            z-index: 0;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-card {
+            padding: 30px;
+            border-radius: 16px;
+            text-align: left;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 20px;
+            left: 30px;
+            font-size: 4rem;
+            color: var(--neon-blue);
+            opacity: 0.3;
+            line-height: 1;
+        }
+
+        .testimonial-text {
+            margin-bottom: 25px;
+            font-style: italic;
+            line-height: 1.7;
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .author-image {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 2px solid var(--neon-blue);
+        }
+
+        .author-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .author-info h4 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+
+        .author-info p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .testimonial-rating {
+            color: #ffc107;
+            margin-top: 10px;
+        }
+
+        /* Contact Section */
+        .contact {
+            position: relative;
+        }
+
+        .contact::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 L0,100 Z" fill="none" stroke="rgba(0,242,255,0.05)" stroke-width="0.5"/></svg>');
+            background-size: 50px 50px;
+            opacity: 0.5;
+            z-index: 0;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            margin-top: 3rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .contact-card {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 2.5rem;
+            padding: 1.5rem;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-card:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .contact-icon {
+            background: linear-gradient(135deg, var(--neon-blue), var(--neon-red));
+            color: var(--white);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1.5rem;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .contact-text h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .contact-text p,
+        .contact-text a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s;
+            line-height: 1.7;
+        }
+
+        .contact-text a:hover {
+            color: var(--neon-blue);
+        }
+
+        .contact-form {
+            padding: 3rem;
+            border-radius: 16px;
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.8rem;
+            color: var(--white);
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--white);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--neon-blue);
+            outline: none;
+            box-shadow: 0 0 10px rgba(0, 242, 255, 0.2);
+        }
+
+        .form-group textarea {
+            min-height: 180px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, var(--neon-blue), var(--neon-red));
+            color: var(--white);
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+            box-shadow: 0 5px 15px rgba(0, 242, 255, 0.2);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 242, 255, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            padding: 60px 0 30px;
+            border-top: 1px solid rgba(0, 242, 255, 0.1);
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: var(--light-red);
+        }
+
+        .footer-col p {
+            opacity: 0.8;
+            margin-bottom: 20px;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: var(--white);
+            text-decoration: none;
+            opacity: 0.8;
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+            padding-left: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--white);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--light-red);
+            transform: translateY(-3px);
+        }
+
+        .newsletter-form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .newsletter-form input {
+            padding: 12px 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            margin-bottom: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--white);
+            font-size: 1rem;
+        }
+
+        .newsletter-form input:focus {
+            outline: none;
+            border-color: var(--light-red);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+        /* Chat Button */
+        .chat-button {
+            position: fixed;
+            bottom: 40px;
+            right: 40px;
+            background: linear-gradient(135deg, var(--neon-blue), var(--neon-red));
+            color: var(--white);
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            box-shadow: 0 10px 30px rgba(0, 242, 255, 0.3);
+            cursor: pointer;
+            z-index: 999;
+            transition: all 0.4s;
+            border: none;
+            animation: pulse 2s infinite;
+        }
+
+        .chat-button:hover {
+            transform: scale(1.1) rotate(10deg);
+            box-shadow: 0 15px 40px rgba(0, 242, 255, 0.4);
+            animation: none;
+        }
+
+        .chat-button .badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background-color: var(--neon-red);
+            color: var(--white);
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+            box-shadow: 0 0 10px rgba(255, 42, 109, 0.5);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        @keyframes textGlow {
+            0% {
+                text-shadow: 0 0 10px rgba(0, 242, 255, 0.3);
+            }
+            100% {
+                text-shadow: 0 0 20px rgba(0, 242, 255, 0.6);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(0, 242, 255, 0.4);
+            }
+            70% {
+                box-shadow: 0 0 0 15px rgba(0, 242, 255, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(0, 242, 255, 0);
+            }
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 1200px) {
+            .about-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 992px) {
+            .hero h2 {
+                font-size: 2.8rem;
+            }
+
+            .section-title h2 {
+                font-size: 2.2rem;
+            }
+
+            .about-content h2 {
+                font-size: 2.2rem;
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 0;
+                left: -100%;
+                width: 80%;
+                height: 100vh;
+                background: rgba(10, 10, 26, 0.95);
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 6rem 2rem 2rem;
+                transition: left 0.4s;
+                z-index: 1000;
+                backdrop-filter: blur(10px);
+                border-right: 1px solid rgba(0, 242, 255, 0.1);
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .nav-links li {
+                margin: 1.5rem 0;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero {
+                padding: 12rem 5% 6rem;
+            }
+
+            .hero h2 {
+                font-size: 2.2rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-stats {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero h2 {
+                font-size: 1.8rem;
+            }
+
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+
+            .about-content h2 {
+                font-size: 1.8rem;
+            }
+
+            .project-card {
+                min-width: 85%;
+            }
+
+            .contact-form {
+                padding: 2rem;
+            }
+
+            .chat-button {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+                bottom: 30px;
+                right: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
     <!-- Particle Background -->
     <div id="particles-js"></div>
 
@@ -64,882 +1330,741 @@
     <div class="floating-element floating-2"></div>
 
     <!-- Header -->
-    <header>
-      <nav class="navbar">
-        <div class="logo">
-          <img src="images/logo.png" alt="SJ Softwares Logo" />
-          <h1>SJ <span>Softwares</span></h1>
-        </div>
-        <ul class="nav-links">
-          <li><a href="#home">Home</a></li>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-        <button class="mobile-menu-btn">
-          <i class="fas fa-bars"></i>
-        </button>
-      </nav>
+    <header id="header">
+        <nav class="navbar">
+            <div class="logo">
+                <!-- Replace with your actual logo image -->
+                <div class="logo-img">
+                    <img src="images/logo.png" alt="SJ Softwares Logo" style="width: 100%; height: 100%; object-fit: contain; border-radius: 10px;">
+                </div>
+                <div class="logo-text">
+                    <h1>SJ <span>Softwares</span></h1>
+                </div>
+            </div>
+            
+            <ul class="nav-links">
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
     </header>
 
     <!-- Hero Section -->
     <section class="hero" id="home">
-      <div class="hero-content">
-        <h2>Next-Gen IT Solutions for the Digital Era</h2>
-        <p>
-          We craft cutting-edge custom software, immersive web experiences, and
-          transformative IT strategies to propel your business into the future.
-        </p>
-        <div class="cta-buttons">
-          <a href="#contact" class="btn btn-primary"
-            >Start Your Project <i class="fas fa-rocket"></i
-          ></a>
-          <a href="#services" class="btn btn-secondary"
-            >Explore Services <i class="fas fa-arrow-right"></i
-          ></a>
+        <div class="container">
+            <div class="hero-content">
+                <h2>Next-Gen IT Solutions for the Digital Era</h2>
+                <p>
+                    We craft cutting-edge custom software, immersive web experiences, and
+                    transformative IT strategies to propel your business into the future.
+                </p>
+                <div class="cta-buttons">
+                    <a href="#contact" class="btn">Start Your Project <i class="fas fa-rocket"></i></a>
+                    <a href="#services" class="btn btn-secondary">Explore Services <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
         </div>
-      </div>
+        
+        <div class="hero-visual">
+            <div class="floating-card glass">
+                <i class="fas fa-globe"></i>
+                <h3>Web Development</h3>
+                <p>Professional websites</p>
+            </div>
+            <div class="floating-card glass">
+                <i class="fas fa-mobile-alt"></i>
+                <h3>Mobile Apps</h3>
+                <p>iOS & Android</p>
+            </div>
+            <div class="floating-card glass">
+                <i class="fas fa-cogs"></i>
+                <h3>IT Consultancy</h3>
+                <p>Expert advice</p>
+            </div>
+        </div>
     </section>
 
     <!-- Services Section -->
     <section class="services" id="services">
-      <div class="section-title">
-        <h2>Our Services</h2>
-        <p>
-          We offer a comprehensive suite of IT services designed to meet the
-          evolving needs of modern businesses.
-        </p>
-      </div>
-      <div class="services-grid">
-        <div class="service-card">
-          <div class="service-icon">
-            <i class="fas fa-code"></i>
-          </div>
-          <div class="service-content">
-            <h3>Custom Software Development</h3>
-            <p>
-              Tailored solutions built from scratch to address your unique
-              business challenges and streamline operations.
-            </p>
-            <a href="#" class="service-link"
-              >Discover More <i class="fas fa-chevron-right"></i
-            ></a>
-          </div>
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Services</h2>
+                <p>
+                    We offer a comprehensive suite of IT services designed to meet the
+                    evolving needs of modern businesses.
+                </p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card glass">
+                    <div class="service-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Custom Software Development</h3>
+                        <p>
+                            Tailored solutions built from scratch to address your unique
+                            business challenges and streamline operations.
+                        </p>
+                        <a href="#" class="service-link">Discover More <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+                <div class="service-card glass">
+                    <div class="service-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Web Development</h3>
+                        <p>
+                            High-performance websites and web applications with immersive user
+                            experiences and cutting-edge functionality.
+                        </p>
+                        <a href="#" class="service-link">Discover More <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+                <div class="service-card glass">
+                    <div class="service-icon">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Graphic Design</h3>
+                        <p>
+                            Visually stunning designs that communicate your brand identity and
+                            captivate your audience across all platforms.
+                        </p>
+                        <a href="#" class="service-link">Discover More <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+                <div class="service-card glass">
+                    <div class="service-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>IT Consultancy</h3>
+                        <p>
+                            Strategic guidance to optimize your technology infrastructure and
+                            align IT with your business objectives.
+                        </p>
+                        <a href="#" class="service-link">Discover More <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+                <div class="service-card glass">
+                    <div class="service-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>IT Support</h3>
+                        <p>
+                            Reliable, proactive technical support to ensure your systems
+                            operate at peak performance around the clock.
+                        </p>
+                        <a href="#" class="service-link">Discover More <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+                <div class="service-card glass">
+                    <div class="service-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Mobile App Development</h3>
+                        <p>
+                            Engaging, intuitive mobile applications that connect you with your
+                            customers wherever they are.
+                        </p>
+                        <a href="#" class="service-link">Discover More <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="service-card">
-          <div class="service-icon">
-            <i class="fas fa-globe"></i>
-          </div>
-          <div class="service-content">
-            <h3>Web Development</h3>
-            <p>
-              High-performance websites and web applications with immersive user
-              experiences and cutting-edge functionality.
-            </p>
-            <a href="#" class="service-link"
-              >Discover More <i class="fas fa-chevron-right"></i
-            ></a>
-          </div>
-        </div>
-        <div class="service-card">
-          <div class="service-icon">
-            <i class="fas fa-paint-brush"></i>
-          </div>
-          <div class="service-content">
-            <h3>Graphic Design</h3>
-            <p>
-              Visually stunning designs that communicate your brand identity and
-              captivate your audience across all platforms.
-            </p>
-            <a href="#" class="service-link"
-              >Discover More <i class="fas fa-chevron-right"></i
-            ></a>
-          </div>
-        </div>
-        <div class="service-card">
-          <div class="service-icon">
-            <i class="fas fa-headset"></i>
-          </div>
-          <div class="service-content">
-            <h3>IT Consultancy</h3>
-            <p>
-              Strategic guidance to optimize your technology infrastructure and
-              align IT with your business objectives.
-            </p>
-            <a href="#" class="service-link"
-              >Discover More <i class="fas fa-chevron-right"></i
-            ></a>
-          </div>
-        </div>
-        <div class="service-card">
-          <div class="service-icon">
-            <i class="fas fa-shield-alt"></i>
-          </div>
-          <div class="service-content">
-            <h3>IT Support</h3>
-            <p>
-              Reliable, proactive technical support to ensure your systems
-              operate at peak performance around the clock.
-            </p>
-            <a href="#" class="service-link"
-              >Discover More <i class="fas fa-chevron-right"></i
-            ></a>
-          </div>
-        </div>
-        <div class="service-card">
-          <div class="service-icon">
-            <i class="fas fa-mobile-alt"></i>
-          </div>
-          <div class="service-content">
-            <h3>Mobile App Development</h3>
-            <p>
-              Engaging, intuitive mobile applications that connect you with your
-              customers wherever they are.
-            </p>
-            <a href="#" class="service-link"
-              >Discover More <i class="fas fa-chevron-right"></i
-            ></a>
-          </div>
-        </div>
-      </div>
     </section>
 
     <!-- Projects Section -->
     <section class="projects" id="projects">
-      <div class="section-title">
-        <h2>Our Projects</h2>
-        <p>
-          Explore our portfolio of innovative solutions that have transformed
-          businesses across industries.
-        </p>
-      </div>
-      <div class="projects-slider">
-        <div class="projects-container">
-          <div class="project-card">
-            <div class="project-image">
-              <img
-                src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
-                alt="E-commerce Platform"
-              />
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Projects</h2>
+                <p>
+                    Explore our portfolio of innovative solutions that have transformed
+                    businesses across industries.
+                </p>
             </div>
-            <div class="project-info">
-              <h3>Nexus E-commerce Platform</h3>
-              <p>
-                A revolutionary online marketplace with AI-powered
-                recommendations, blockchain payment integration, and immersive
-                AR product visualization.
-              </p>
-              <a
-                href="https://example-ecommerce.com"
-                target="_blank"
-                class="project-link"
-                >View Live <i class="fas fa-external-link-alt"></i
-              ></a>
+            <div class="projects-slider">
+                <div class="projects-container">
+                    <div class="project-card glass">
+                        <div class="project-image">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <div class="project-info">
+                            <h3>Nexus E-commerce Platform</h3>
+                            <p>
+                                A revolutionary online marketplace with AI-powered
+                                recommendations, blockchain payment integration, and immersive
+                                AR product visualization.
+                            </p>
+                            <a href="https://example-ecommerce.com" target="_blank" class="project-link">View Live <i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                    <div class="project-card glass">
+                        <div class="project-image">
+                            <i class="fas fa-heartbeat"></i>
+                        </div>
+                        <div class="project-info">
+                            <h3>MediTrack Pro</h3>
+                            <p>
+                                Comprehensive healthcare solution with telemedicine
+                                capabilities, IoT device integration, and secure patient data
+                                management.
+                            </p>
+                            <a href="https://example-healthcare.com" target="_blank" class="project-link">View Live <i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                    <div class="project-card glass">
+                        <div class="project-image">
+                            <i class="fas fa-building"></i>
+                        </div>
+                        <div class="project-info">
+                            <h3>Quantum Corporate Portal</h3>
+                            <p>
+                                An interactive corporate website with WebGL animations,
+                                real-time data visualization, and personalized content delivery.
+                            </p>
+                            <a href="https://example-corporate.com" target="_blank" class="project-link">View Live <i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                    <div class="project-card glass">
+                        <div class="project-image">
+                            <i class="fas fa-university"></i>
+                        </div>
+                        <div class="project-info">
+                            <h3>NeoBank Mobile</h3>
+                            <p>
+                                Next-generation banking application with biometric security,
+                                cryptocurrency support, and AI-driven financial insights.
+                            </p>
+                            <a href="https://example-banking.com" target="_blank" class="project-link">View Live <i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="slider-nav">
+                    <button class="slider-btn prev-btn">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="slider-btn next-btn">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
             </div>
-          </div>
-          <div class="project-card">
-            <div class="project-image">
-              <img
-                src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1469&q=80"
-                alt="Healthcare Management System"
-              />
-            </div>
-            <div class="project-info">
-              <h3>MediTrack Pro</h3>
-              <p>
-                Comprehensive healthcare solution with telemedicine
-                capabilities, IoT device integration, and secure patient data
-                management.
-              </p>
-              <a
-                href="https://example-healthcare.com"
-                target="_blank"
-                class="project-link"
-                >View Live <i class="fas fa-external-link-alt"></i
-              ></a>
-            </div>
-          </div>
-          <div class="project-card">
-            <div class="project-image">
-              <img
-                src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
-                alt="Corporate Website"
-              />
-            </div>
-            <div class="project-info">
-              <h3>Quantum Corporate Portal</h3>
-              <p>
-                An interactive corporate website with WebGL animations,
-                real-time data visualization, and personalized content delivery.
-              </p>
-              <a
-                href="https://example-corporate.com"
-                target="_blank"
-                class="project-link"
-                >View Live <i class="fas fa-external-link-alt"></i
-              ></a>
-            </div>
-          </div>
-          <div class="project-card">
-            <div class="project-image">
-              <img
-                src="https://images.unsplash.com/photo-1555774698-0b77e0d5fac6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
-                alt="Mobile Banking App"
-              />
-            </div>
-            <div class="project-info">
-              <h3>NeoBank Mobile</h3>
-              <p>
-                Next-generation banking application with biometric security,
-                cryptocurrency support, and AI-driven financial insights.
-              </p>
-              <a
-                href="https://example-banking.com"
-                target="_blank"
-                class="project-link"
-                >View Live <i class="fas fa-external-link-alt"></i
-              ></a>
-            </div>
-          </div>
-          <div class="project-card">
-            <div class="project-image">
-              <img
-                src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
-                alt="Learning Management System"
-              />
-            </div>
-            <div class="project-info">
-              <h3>EduSphere LMS</h3>
-              <p>
-                Immersive learning platform with VR classrooms, adaptive
-                learning algorithms, and blockchain credentialing.
-              </p>
-              <a
-                href="https://example-lms.com"
-                target="_blank"
-                class="project-link"
-                >View Live <i class="fas fa-external-link-alt"></i
-              ></a>
-            </div>
-          </div>
         </div>
-      </div>
     </section>
 
     <!-- About Section -->
     <section class="about" id="about">
-      <div class="about-image">
-        <img
-          src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
-          alt="Our Team"
-        />
-      </div>
-      <div class="about-content">
-        <h2>About SJ Softwares</h2>
-        <p>
-          Since 2014, SJ Softwares and Consultancy has been pioneering digital
-          transformation for businesses worldwide. Our team of visionaries,
-          engineers, and designers are united by a passion for pushing
-          technological boundaries.
-        </p>
-        <p>
-          We don't just build solutions—we craft digital experiences that
-          redefine industries. Our approach combines technical excellence with
-          creative innovation to deliver results that drive measurable business
-          impact.
-        </p>
-        <div class="about-features">
-          <div class="feature-item">
-            <div class="feature-icon">
-              <i class="fas fa-users"></i>
+        <div class="container">
+            <div class="about-content">
+                <h2>About SJ Softwares</h2>
+                <p>
+                    Since 2014, SJ Softwares and Consultancy has been pioneering digital
+                    transformation for businesses worldwide. Our team of visionaries,
+                    engineers, and designers are united by a passion for pushing
+                    technological boundaries.
+                </p>
+                <p>
+                    We don't just build solutions—we craft digital experiences that
+                    redefine industries. Our approach combines technical excellence with
+                    creative innovation to deliver results that drive measurable business
+                    impact.
+                </p>
+                
+                <div class="about-stats">
+                    <div class="stat-item glass">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-number">150+</div>
+                        <div class="stat-text">Certified Specialists</div>
+                    </div>
+                    <div class="stat-item glass">
+                        <div class="stat-icon">
+                            <i class="fas fa-project-diagram"></i>
+                        </div>
+                        <div class="stat-number">500+</div>
+                        <div class="stat-text">Projects Completed</div>
+                    </div>
+                    <div class="stat-item glass">
+                        <div class="stat-icon">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <div class="stat-number">25+</div>
+                        <div class="stat-text">Countries Served</div>
+                    </div>
+                    <div class="stat-item glass">
+                        <div class="stat-icon">
+                            <i class="fas fa-award"></i>
+                        </div>
+                        <div class="stat-number">92%</div>
+                        <div class="stat-text">Client Retention</div>
+                    </div>
+                </div>
             </div>
-            <div class="feature-text">
-              <h4>Elite Talent Network</h4>
-              <p>150+ certified specialists across 12 technology domains</p>
-            </div>
-          </div>
-          <div class="feature-item">
-            <div class="feature-icon">
-              <i class="fas fa-lightbulb"></i>
-            </div>
-            <div class="feature-text">
-              <h4>Innovation Lab</h4>
-              <p>
-                Dedicated R&D team exploring AI, blockchain, and quantum
-                computing
-              </p>
-            </div>
-          </div>
-          <div class="feature-item">
-            <div class="feature-icon">
-              <i class="fas fa-handshake"></i>
-            </div>
-            <div class="feature-text">
-              <h4>Client Success</h4>
-              <p>
-                92% client retention rate with 4.9/5 average satisfaction score
-              </p>
-            </div>
-          </div>
         </div>
-      </div>
     </section>
 
     <!-- Testimonials Section -->
     <section class="testimonials">
-      <div class="section-title">
-        <h2>Client Experiences</h2>
-        <p>
-          Don't just take our word for it. Here's what industry leaders say
-          about partnering with us.
-        </p>
-      </div>
-      <div class="testimonial-slider">
-        <div class="testimonial-slide active">
-          <div class="client-info">
-            <div class="client-image">
-              <img
-                src="https://randomuser.me/api/portraits/women/45.jpg"
-                alt="Sarah Johnson"
-              />
+        <div class="container">
+            <div class="section-title">
+                <h2>Client Experiences</h2>
+                <p>
+                    Don't just take our word for it. Here's what industry leaders say
+                    about partnering with us.
+                </p>
             </div>
-            <div class="client-details">
-              <h4>Jesica Johnson</h4>
-              <p>CTO, TechSolutions Inc.</p>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card glass">
+                    <div class="testimonial-text">
+                        SJ Softwares completely transformed our digital infrastructure.
+                        Their blockchain integration reduced our transaction costs by 40%
+                        while improving security. The team's expertise in decentralized
+                        technologies is unmatched in the industry.
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-image">
+                            <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="Jesica Johnson" />
+                        </div>
+                        <div class="author-info">
+                            <h4>Jesica Johnson</h4>
+                            <p>CTO, TechSolutions Inc.</p>
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card glass">
+                    <div class="testimonial-text">
+                        The AR-powered e-commerce platform SJ Softwares developed
+                        increased our conversion rates by 150% and reduced returns by 30%.
+                        Their ability to blend immersive technologies with practical
+                        business solutions is extraordinary.
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-image">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Michael Chen" />
+                        </div>
+                        <div class="author-info">
+                            <h4>Michael Chen</h4>
+                            <p>Director, Global Retail</p>
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card glass">
+                    <div class="testimonial-text">
+                        Our AI-driven patient management system developed by SJ Softwares
+                        has revolutionized our operations. The predictive analytics
+                        capabilities have improved patient outcomes while reducing
+                        administrative workload by 45%.
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-image">
+                            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Emma Rodriguez" />
+                        </div>
+                        <div class="author-info">
+                            <h4>Emma Rodriguez</h4>
+                            <p>CEO, HealthPlus</p>
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-          <div class="testimonial-text">
-            <p>
-              SJ Softwares completely transformed our digital infrastructure.
-              Their blockchain integration reduced our transaction costs by 40%
-              while improving security. The team's expertise in decentralized
-              technologies is unmatched in the industry.
-            </p>
-          </div>
-          <div class="testimonial-rating">
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-          </div>
         </div>
-        <div class="testimonial-slide">
-          <div class="client-info">
-            <div class="client-image">
-              <img
-                src="https://randomuser.me/api/portraits/men/32.jpg"
-                alt="Michael Chen"
-              />
-            </div>
-            <div class="client-details">
-              <h4>Michael Chen</h4>
-              <p>Director, Global Retail</p>
-            </div>
-          </div>
-          <div class="testimonial-text">
-            <p>
-              The AR-powered e-commerce platform SJ Softwares developed
-              increased our conversion rates by 150% and reduced returns by 30%.
-              Their ability to blend immersive technologies with practical
-              business solutions is extraordinary.
-            </p>
-          </div>
-          <div class="testimonial-rating">
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-          </div>
-        </div>
-        <div class="testimonial-slide">
-          <div class="client-info">
-            <div class="client-image">
-              <img
-                src="https://randomuser.me/api/portraits/women/68.jpg"
-                alt="Emma Rodriguez"
-              />
-            </div>
-            <div class="client-details">
-              <h4>Emma Rodriguez</h4>
-              <p>CEO, HealthPlus</p>
-            </div>
-          </div>
-          <div class="testimonial-text">
-            <p>
-              Our AI-driven patient management system developed by SJ Softwares
-              has revolutionized our operations. The predictive analytics
-              capabilities have improved patient outcomes while reducing
-              administrative workload by 45%.
-            </p>
-          </div>
-          <div class="testimonial-rating">
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star-half-alt"></i>
-          </div>
-        </div>
-        <div class="slider-controls">
-          <div class="slider-dot active" data-slide="0"></div>
-          <div class="slider-dot" data-slide="1"></div>
-          <div class="slider-dot" data-slide="2"></div>
-        </div>
-      </div>
     </section>
 
     <!-- Contact Section -->
     <section class="contact" id="contact">
-      <div class="section-title">
-        <h2>Connect With Us</h2>
-        <p>
-          Ready to transform your business? Reach out to discuss your project or
-          learn more about our services.
-        </p>
-      </div>
-      <div class="contact-container">
-        <div class="contact-info">
-          <div class="contact-card">
-            <div class="contact-icon">
-              <i class="fas fa-map-marker-alt"></i>
+        <div class="container">
+            <div class="section-title">
+                <h2>Connect With Us</h2>
+                <p>
+                    Ready to transform your business? Reach out to discuss your project or
+                    learn more about our services.
+                </p>
             </div>
-            <div class="contact-text">
-              <h3>Our Headquarters</h3>
-              <p>
-                Arusha, Tanzania Boma Road Street<br />
-                At New Safari Hotel Business Center, Office No 417 Arusha
-              </p>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <div class="contact-card glass">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h3>Our Headquarters</h3>
+                            <p>
+                                Arusha, Tanzania Boma Road Street<br />
+                                At New Safari Hotel Business Center, Office No 417 Arusha
+                            </p>
+                        </div>
+                    </div>
+                    <div class="contact-card glass">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h3>Contact Number</h3>
+                            <p><a href="tel:+255717392442">+255 717 392 442</a></p>
+                        </div>
+                    </div>
+                    <div class="contact-card glass">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h3>Email Address</h3>
+                            <p>
+                                <a href="mailto:info@sjsoftwares.com">info@sjsoftwares.com</a>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="contact-card glass">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h3>Working Hours</h3>
+                            <p>Monday - Friday: 9:00 AM - 6:00 PM</p>
+                            <p>Saturday: 10:00 AM - 3:00 PM</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form glass">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Your Name</label>
+                            <input type="text" id="name" name="name" required placeholder="Enter your name" />
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Your Email</label>
+                            <input type="email" id="email" name="email" required placeholder="Enter your email" />
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject" required placeholder="What's this about?" />
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Your Message</label>
+                            <textarea id="message" name="message" required placeholder="Tell us about your project"></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">
+                            Send Message <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
             </div>
-          </div>
-          <div class="contact-card">
-            <div class="contact-icon">
-              <i class="fas fa-phone-alt"></i>
-            </div>
-            <div class="contact-text">
-              <h3>Contact Number</h3>
-              <p><a href="tel:+255717392442">+255 717 392 442</a></p>
-            </div>
-          </div>
-          <div class="contact-card">
-            <div class="contact-icon">
-              <i class="fas fa-envelope"></i>
-            </div>
-            <div class="contact-text">
-              <h3>Email Address</h3>
-              <p>
-                <a href="mailto:info@sjsoftwares.com">info@sjsoftwares.com</a>
-              </p>
-            </div>
-          </div>
-          <div class="contact-card">
-            <div class="contact-icon">
-              <i class="fas fa-clock"></i>
-            </div>
-            <div class="contact-text">
-              <h3>Working Hours</h3>
-              <p>Monday - Friday: 9:00 AM - 6:00 PM</p>
-              <p>Saturday: 10:00 AM - 3:00 PM</p>
-            </div>
-          </div>
         </div>
-        <div class="contact-form">
-          <form id="contactForm">
-            <div class="form-group">
-              <label for="name">Your Name</label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                required
-                placeholder="Enter your name"
-              />
-            </div>
-            <div class="form-group">
-              <label for="email">Your Email</label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                required
-                placeholder="Enter your email"
-              />
-            </div>
-            <div class="form-group">
-              <label for="subject">Subject</label>
-              <input
-                type="text"
-                id="subject"
-                name="subject"
-                required
-                placeholder="What's this about?"
-              />
-            </div>
-            <div class="form-group">
-              <label for="message">Your Message</label>
-              <textarea
-                id="message"
-                name="message"
-                required
-                placeholder="Tell us about your project"
-              ></textarea>
-            </div>
-            <button type="submit" class="submit-btn">
-              Send Message <i class="fas fa-paper-plane"></i>
-            </button>
-          </form>
-        </div>
-      </div>
     </section>
 
     <!-- Footer -->
     <footer>
-      <div class="footer-container">
-        <div class="footer-col">
-          <div class="logo">
-            <img src="images/logo.png" alt="SJ Softwares Logo" />
-            <h1>SJ <span>Softwares</span></h1>
-          </div>
-          <p>
-            Pioneering digital transformation through innovative software
-            solutions, cutting-edge web development, and strategic IT
-            consultancy services.
-          </p>
-          <div class="social-links">
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-linkedin-in"></i></a>
-            <a href="#"><i class="fab fa-github"></i></a>
-            <a href="#"><i class="fab fa-discord"></i></a>
-          </div>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-col">
+                    <div class="logo">
+                        <div class="logo-img">
+                            <img src="images/logo.png" alt="SJ Softwares Logo" style="width: 100%; height: 100%; object-fit: contain; border-radius: 10px;">
+                        </div>
+                        <div class="logo-text">
+                            <h1>SJ <span>Softwares</span></h1>
+                        </div>
+                    </div>
+                    <p>
+                        Pioneering digital transformation through innovative software
+                        solutions, cutting-edge web development, and strategic IT
+                        consultancy services.
+                    </p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-discord"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#projects">Projects</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Technologies</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Blockchain</a></li>
+                        <li><a href="#">AI/ML</a></li>
+                        <li><a href="#">Web3</a></li>
+                        <li><a href="#">Cloud Computing</a></li>
+                        <li><a href="#">IoT</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Newsletter</h3>
+                    <p>
+                        Subscribe for tech insights, industry trends, and company updates.
+                    </p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your Email Address" required />
+                        <button type="submit" class="submit-btn">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>
+                    &copy; <span id="currentYear"></span> SJ Softwares and Consultancy. All Rights Reserved. |
+                    <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
+                </p>
+            </div>
         </div>
-        <div class="footer-col">
-          <h3>Quick Links</h3>
-          <ul class="footer-links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#about">About Us</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h3>Technologies</h3>
-          <ul class="footer-links">
-            <li><a href="#">Blockchain</a></li>
-            <li><a href="#">AI/ML</a></li>
-            <li><a href="#">Web3</a></li>
-            <li><a href="#">Cloud Computing</a></li>
-            <li><a href="#">IoT</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h3>Newsletter</h3>
-          <p>
-            Subscribe for tech insights, industry trends, and company updates.
-          </p>
-          <form class="newsletter-form">
-            <input type="email" placeholder="Your Email Address" required />
-            <button type="submit" class="submit-btn">Subscribe</button>
-          </form>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p>
-          &copy; 2025 SJ Softwares and Consultancy. All Rights Reserved. |
-          <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
-        </p>
-      </div>
     </footer>
 
     <!-- Chat Button -->
     <button class="chat-button" id="chatButton">
-      <i class="fas fa-comment-dots"></i>
-      <span class="badge">1</span>
+        <i class="fas fa-comment-dots"></i>
+        <span class="badge">1</span>
     </button>
 
     <!-- Particle.js Script -->
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 
     <script>
-      // Initialize Particle.js
-      particlesJS("particles-js", {
-        particles: {
-          number: {
-            value: 80,
-            density: {
-              enable: true,
-              value_area: 800,
+        // Initialize Particle.js
+        particlesJS("particles-js", {
+            particles: {
+                number: {
+                    value: 80,
+                    density: {
+                        enable: true,
+                        value_area: 800,
+                    },
+                },
+                color: {
+                    value: "#00f2ff",
+                },
+                shape: {
+                    type: "circle",
+                    stroke: {
+                        width: 0,
+                        color: "#000000",
+                    },
+                    polygon: {
+                        nb_sides: 5,
+                    },
+                },
+                opacity: {
+                    value: 0.5,
+                    random: false,
+                    anim: {
+                        enable: false,
+                        speed: 1,
+                        opacity_min: 0.1,
+                        sync: false,
+                    },
+                },
+                size: {
+                    value: 3,
+                    random: true,
+                    anim: {
+                        enable: false,
+                        speed: 40,
+                        size_min: 0.1,
+                        sync: false,
+                    },
+                },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: "#00f2ff",
+                    opacity: 0.2,
+                    width: 1,
+                },
+                move: {
+                    enable: true,
+                    speed: 2,
+                    direction: "none",
+                    random: false,
+                    straight: false,
+                    out_mode: "out",
+                    bounce: false,
+                    attract: {
+                        enable: false,
+                        rotateX: 600,
+                        rotateY: 1200,
+                    },
+                },
             },
-          },
-          color: {
-            value: "#00f2ff",
-          },
-          shape: {
-            type: "circle",
-            stroke: {
-              width: 0,
-              color: "#000000",
+            interactivity: {
+                detect_on: "canvas",
+                events: {
+                    onhover: {
+                        enable: true,
+                        mode: "grab",
+                    },
+                    onclick: {
+                        enable: true,
+                        mode: "push",
+                    },
+                    resize: true,
+                },
+                modes: {
+                    grab: {
+                        distance: 140,
+                        line_linked: {
+                            opacity: 0.5,
+                        },
+                    },
+                    bubble: {
+                        distance: 400,
+                        size: 40,
+                        duration: 2,
+                        opacity: 8,
+                        speed: 3,
+                    },
+                    repulse: {
+                        distance: 200,
+                        duration: 0.4,
+                    },
+                    push: {
+                        particles_nb: 4,
+                    },
+                    remove: {
+                        particles_nb: 2,
+                    },
+                },
             },
-            polygon: {
-              nb_sides: 5,
-            },
-          },
-          opacity: {
-            value: 0.5,
-            random: false,
-            anim: {
-              enable: false,
-              speed: 1,
-              opacity_min: 0.1,
-              sync: false,
-            },
-          },
-          size: {
-            value: 3,
-            random: true,
-            anim: {
-              enable: false,
-              speed: 40,
-              size_min: 0.1,
-              sync: false,
-            },
-          },
-          line_linked: {
-            enable: true,
-            distance: 150,
-            color: "#00f2ff",
-            opacity: 0.2,
-            width: 1,
-          },
-          move: {
-            enable: true,
-            speed: 2,
-            direction: "none",
-            random: false,
-            straight: false,
-            out_mode: "out",
-            bounce: false,
-            attract: {
-              enable: false,
-              rotateX: 600,
-              rotateY: 1200,
-            },
-          },
-        },
-        interactivity: {
-          detect_on: "canvas",
-          events: {
-            onhover: {
-              enable: true,
-              mode: "grab",
-            },
-            onclick: {
-              enable: true,
-              mode: "push",
-            },
-            resize: true,
-          },
-          modes: {
-            grab: {
-              distance: 140,
-              line_linked: {
-                opacity: 0.5,
-              },
-            },
-            bubble: {
-              distance: 400,
-              size: 40,
-              duration: 2,
-              opacity: 8,
-              speed: 3,
-            },
-            repulse: {
-              distance: 200,
-              duration: 0.4,
-            },
-            push: {
-              particles_nb: 4,
-            },
-            remove: {
-              particles_nb: 2,
-            },
-          },
-        },
-        retina_detect: true,
-      });
-
-      // Mobile Menu Toggle
-      const mobileMenuBtn = document.querySelector(".mobile-menu-btn");
-      const navLinks = document.querySelector(".nav-links");
-
-      mobileMenuBtn.addEventListener("click", () => {
-        navLinks.classList.toggle("active");
-        mobileMenuBtn.innerHTML = navLinks.classList.contains("active")
-          ? '<i class="fas fa-times"></i>'
-          : '<i class="fas fa-bars"></i>';
-      });
-
-      // Smooth Scrolling for Navigation Links
-      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-        anchor.addEventListener("click", function (e) {
-          e.preventDefault();
-
-          if (this.getAttribute("href") === "#") return;
-
-          const target = document.querySelector(this.getAttribute("href"));
-          if (target) {
-            window.scrollTo({
-              top: target.offsetTop - 80,
-              behavior: "smooth",
-            });
-
-            // Close mobile menu if open
-            if (navLinks.classList.contains("active")) {
-              navLinks.classList.remove("active");
-              mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-            }
-          }
-        });
-      });
-
-      // Testimonial Slider
-      const testimonialSlides = document.querySelectorAll(".testimonial-slide");
-      const sliderDots = document.querySelectorAll(".slider-dot");
-      let currentSlide = 0;
-      let slideInterval;
-
-      function showSlide(index) {
-        testimonialSlides.forEach((slide) => slide.classList.remove("active"));
-        sliderDots.forEach((dot) => dot.classList.remove("active"));
-
-        testimonialSlides[index].classList.add("active");
-        sliderDots[index].classList.add("active");
-        currentSlide = index;
-      }
-
-      function nextSlide() {
-        currentSlide = (currentSlide + 1) % testimonialSlides.length;
-        showSlide(currentSlide);
-      }
-
-      sliderDots.forEach((dot, index) => {
-        dot.addEventListener("click", () => {
-          clearInterval(slideInterval);
-          showSlide(index);
-          startSlider();
-        });
-      });
-
-      function startSlider() {
-        slideInterval = setInterval(nextSlide, 5000);
-      }
-
-      startSlider();
-
-      // Pause slider on hover
-      testimonialSlides.forEach((slide) => {
-        slide.addEventListener("mouseenter", () => {
-          clearInterval(slideInterval);
+            retina_detect: true,
         });
 
-        slide.addEventListener("mouseleave", startSlider);
-      });
-
-      // Form Submission
-      const contactForm = document.getElementById("contactForm");
-
-      contactForm.addEventListener("submit", function (e) {
-        e.preventDefault();
-
-        // Here you would typically send the form data to a server
-        // For demonstration, we'll just show an alert
-        const submitBtn = this.querySelector('button[type="submit"]');
-        const originalText = submitBtn.innerHTML;
-
-        submitBtn.innerHTML =
-          '<i class="fas fa-spinner fa-spin"></i> Sending...';
-        submitBtn.disabled = true;
-
-        setTimeout(() => {
-          submitBtn.innerHTML = '<i class="fas fa-check"></i> Sent!';
-          setTimeout(() => {
-            submitBtn.innerHTML = originalText;
-            submitBtn.disabled = false;
-            contactForm.reset();
-          }, 2000);
-        }, 1500);
-      });
-
-      // Chat Button Functionality
-      const chatButton = document.getElementById("chatButton");
-
-      chatButton.addEventListener("click", function () {
-        // This would connect to your Tawk.to chat service
-        // Replace with your actual Tawk.to JavaScript code
-        alert("Connecting to our support team...");
-        // Example: Tawk_API.toggle();
-      });
-
-      // Scroll Animation - Animate elements when they come into view
-      const animateOnScroll = () => {
-        const elements = document.querySelectorAll(
-          ".service-card, .project-card, .feature-item, .contact-card"
-        );
-
-        elements.forEach((element) => {
-          const elementPosition = element.getBoundingClientRect().top;
-          const screenPosition = window.innerHeight / 1.2;
-
-          if (elementPosition < screenPosition) {
-            element.style.opacity = "1";
-            element.style.transform = "translateY(0)";
-          }
-        });
-      };
-
-      // Set initial state for animated elements
-      document
-        .querySelectrorAll(
-          ".service-card, .project-card, .feature-item, .contact-card"
-        )
-        .forEach((element) => {
-          element.style.opacity = "0";
-          element.style.transform = "translateY(30px)";
-          element.style.transition = "all 0.6s ease";
-        });
-
-      window.addEventListener("scroll", animateOnScroll);
-      window.addEventListener("load", animateOnScroll);
-
-      // 3D tilt effect for cards
-      document
-        .querySelectorAll(".service-card, .project-card")
-        .forEach((card) => {
-          card.addEventListener("mousemove", (e) => {
-            const xAxis = (window.innerWidth / 10 - e.pageX) / 25;
-            const yAxis = (window.innerHeight / 2 - e.pageY) / 15;
-            card.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
-          });
-
-          card.addEventListener("mouseenter", () => {
-            card.style.transition = "none";
-          });
-
-          card.addEventListener("mouseleave", () => {
-            card.style.transition = "all 0.5s ease";
-            card.style.transform = "rotateY(0deg) rotateX(0deg)";
-          });
-        });
-
-      // Initialize elements
-      window.addEventListener("DOMContentLoaded", function () {
         // Set current year in footer
-        document.querySelector(".footer-bottom p").innerHTML = document
-          .querySelector(".footer-bottom p")
-          .innerHTML.replace("2025", new Date().getFullYear());
-      });
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+        
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+        
+        // Mobile menu toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileMenuBtn.addEventListener('click', function() {
+            navLinks.classList.toggle('active');
+            mobileMenuBtn.innerHTML = navLinks.classList.contains('active')
+                ? '<i class="fas fa-times"></i>'
+                : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Product slider functionality
+        const productsContainer = document.querySelector('.projects-container');
+        const prevBtn = document.querySelector('.prev-btn');
+        const nextBtn = document.querySelector('.next-btn');
+        
+        prevBtn.addEventListener('click', function() {
+            productsContainer.scrollBy({
+                left: -350,
+                behavior: 'smooth'
+            });
+        });
+        
+        nextBtn.addEventListener('click', function() {
+            productsContainer.scrollBy({
+                left: 350,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Form Submission
+        const contactForm = document.getElementById('contactForm');
+        
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+            submitBtn.disabled = true;
+            
+            setTimeout(() => {
+                submitBtn.innerHTML = '<i class="fas fa-check"></i> Sent!';
+                setTimeout(() => {
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                    contactForm.reset();
+                }, 2000);
+            }, 1500);
+        });
+        
+        // Chat Button Functionality
+        const chatButton = document.getElementById('chatButton');
+        
+        chatButton.addEventListener('click', function() {
+            alert('Connecting to our support team...');
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    if (window.innerWidth <= 768) {
+                        navLinks.classList.remove('active');
+                        mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                    }
+                }
+            });
+        });
     </script>
-  </body>
+</body>
 </html>
