@@ -198,7 +198,7 @@
             min-height: 60vh;
             display: flex;
             align-items: center;
-            padding: 100px 0 50px;
+            padding: 110px 0 50px;
             position: relative;
             overflow: hidden;
         }
@@ -1168,6 +1168,8 @@
             opacity: 0.7;
             font-size: 0.9rem;
         }
+
+        
 
         /* Chat Button */
         .chat-button {

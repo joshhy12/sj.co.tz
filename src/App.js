@@ -121,25 +121,65 @@ function App() {
       });
     }
 
-    // Smooth scrolling for anchor links
-    const handleAnchorClick = (e) => {
-      if (e.target.tagName === 'A' && e.target.getAttribute('href')?.startsWith('#')) {
-        const href = e.target.getAttribute('href');
-        if (href === '#') return;
-        
-        const targetElement = document.querySelector(href);
-        if (targetElement) {
-          e.preventDefault();
+    // Handle initial page load with hash and browser navigation
+    const handleHashNavigation = () => {
+      const hash = window.location.hash.replace('#', '');
+      if (hash) {
+        const element = document.getElementById(hash);
+        if (element) {
+          const offset = 80; // Header height
+          const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+          const offsetPosition = elementPosition - offset;
+          
           window.scrollTo({
-            top: targetElement.offsetTop - 80,
+            top: offsetPosition,
             behavior: 'smooth'
           });
         }
       }
     };
 
+    // Handle initial load
+    setTimeout(() => {
+      handleHashNavigation();
+    }, 100);
+
+    // Handle hash changes (back/forward navigation)
+    window.addEventListener('hashchange', handleHashNavigation);
+    
+    // Improved smooth scrolling for anchor links
+    const handleAnchorClick = (e) => {
+      if (e.target.tagName === 'A' && e.target.getAttribute('href')?.startsWith('#')) {
+        const href = e.target.getAttribute('href');
+        if (href === '#') return;
+        
+        const targetId = href.replace('#', '');
+        const targetElement = document.getElementById(targetId);
+        
+        if (targetElement) {
+          e.preventDefault();
+          const offset = 80; // Adjust based on your header height
+          const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+          const offsetPosition = targetPosition - offset;
+          
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          });
+          
+          // Update URL hash without triggering hashchange
+          window.history.pushState(null, null, href);
+        }
+      }
+    };
+
     document.addEventListener('click', handleAnchorClick);
-    return () => document.removeEventListener('click', handleAnchorClick);
+    
+    // Cleanup
+    return () => {
+      window.removeEventListener('hashchange', handleHashNavigation);
+      document.removeEventListener('click', handleAnchorClick);
+    };
   }, []);
 
   return (

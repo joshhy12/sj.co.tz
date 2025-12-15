@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import '../styles/App.css';
+import logo from '../images/logo.png'; // Import the logo
 
 const Footer = () => {
   const [email, setEmail] = useState('');
@@ -56,7 +57,16 @@ const Footer = () => {
           <div className="footer-col">
             <div className="logo">
               <div className="logo-img">
-                <img src="/images/logo.png" alt="SJ Softwares Logo" />
+               <img 
+              src={logo} 
+              alt="SJ Softwares Logo" 
+              style={{ 
+                width: '100%', 
+                height: '100%', 
+                objectFit: 'contain',
+                borderRadius: '10px'
+              }} 
+            />
               </div>
               <div className="logo-text">
                 <h1>SJ <span>Softwares</span></h1>
