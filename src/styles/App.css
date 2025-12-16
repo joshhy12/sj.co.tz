@@ -1340,8 +1340,14 @@
         z-index: 1003; /* keep button above panel */
     }
 
-    .hero {
-        padding: 12rem 5% 6rem;
+            .hero {
+        padding: 6rem 5% 4rem;
+    }
+
+    /* Hide very large decorative floating elements on smaller screens */
+    .floating-1,
+    .floating-2 {
+        display: none;
     }
 
 
@@ -1396,7 +1402,7 @@
             }
 
             .project-card {
-                min-width: 85%;
+                min-width: 100%;
             }
 
             .contact-form {

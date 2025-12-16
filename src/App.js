@@ -149,28 +149,28 @@ function App() {
     
     // Improved smooth scrolling for anchor links
     const handleAnchorClick = (e) => {
-      if (e.target.tagName === 'A' && e.target.getAttribute('href')?.startsWith('#')) {
-        const href = e.target.getAttribute('href');
-        if (href === '#') return;
-        
-        const targetId = href.replace('#', '');
-        const targetElement = document.getElementById(targetId);
-        
-        if (targetElement) {
-          e.preventDefault();
-          const offset = 80; // Adjust based on your header height
-          const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
-          const offsetPosition = targetPosition - offset;
-          
-          window.scrollTo({
-            top: offsetPosition,
-            behavior: 'smooth'
-          });
-          
-          // Update URL hash without triggering hashchange
-          window.history.pushState(null, null, href);
-        }
-      }
+      const anchor = e.target && e.target.closest ? e.target.closest('a') : null;
+      if (!anchor) return;
+
+      const href = anchor.getAttribute('href');
+      if (!href || !href.startsWith('#') || href === '#') return;
+
+      const targetId = href.replace('#', '');
+      const targetElement = document.getElementById(targetId);
+      if (!targetElement) return;
+
+      e.preventDefault();
+      const offset = 80; // Adjust based on your header height
+      const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+      const offsetPosition = targetPosition - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+
+      // Update URL hash without triggering hashchange
+      window.history.pushState(null, null, href);
     };
 
     document.addEventListener('click', handleAnchorClick);
