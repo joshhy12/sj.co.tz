@@ -1,74 +1,226 @@
-import React from 'react';
-import '../styles/App.css';
-
-const testimonials = [
-  {
-    image: 'https://randomuser.me/api/portraits/women/45.jpg',
-    name: 'Jesica Johnson',
-    position: 'CTO, TechSolutions Inc.',
-    text: 'SJ Softwares completely transformed our digital infrastructure. Their blockchain integration reduced our transaction costs by 40% while improving security. The team\'s expertise in decentralized technologies is unmatched in the industry.',
-    rating: 5
-  },
-  {
-    image: 'https://randomuser.me/api/portraits/men/32.jpg',
-    name: 'Michael Chen',
-    position: 'Director, Global Retail',
-    text: 'The AR-powered e-commerce platform SJ Softwares developed increased our conversion rates by 150% and reduced returns by 30%. Their ability to blend immersive technologies with practical business solutions is extraordinary.',
-    rating: 5
-  },
-  {
-    image: 'https://randomuser.me/api/portraits/women/68.jpg',
-    name: 'Emma Rodriguez',
-    position: 'CEO, HealthPlus',
-    text: 'Our AI-driven patient management system developed by SJ Softwares has revolutionized our operations. The predictive analytics capabilities have improved patient outcomes while reducing administrative workload by 45%.',
-    rating: 4.5
-  }
-];
+import React, { useState, useEffect, useRef } from 'react';
+import { FaQuoteLeft, FaStar, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import '../styles/Testimonials.css';
 
 const Testimonials = () => {
-  const renderStars = (rating) => {
-    const stars = [];
-    for (let i = 1; i <= 5; i++) {
-      if (i <= Math.floor(rating)) {
-        stars.push(<i key={i} className="fas fa-star"></i>);
-      } else if (i === Math.ceil(rating) && rating % 1 !== 0) {
-        stars.push(<i key={i} className="fas fa-star-half-alt"></i>);
-      } else {
-        stars.push(<i key={i} className="far fa-star"></i>);
-      }
+  const [activeSlide, setActiveSlide] = useState(0);
+  const [autoPlay, setAutoPlay] = useState(true);
+  const sliderRef = useRef(null);
+
+  const testimonials = [
+    {
+      id: 1,
+      name: 'Michael Rodriguez',
+      position: 'CTO, TechCorp Inc.',
+      company: 'Fortune 500',
+      content: 'SJ Softwares transformed our digital infrastructure. Their AI-powered solutions increased our operational efficiency by 40%. The team\'s expertise and professionalism exceeded our expectations.',
+      rating: 5,
+      image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=800'
+    },
+    {
+      id: 2,
+      name: 'Sarah Johnson',
+      position: 'Product Director',
+      company: 'Global Finance Group',
+      content: 'Working with SJ Softwares was a game-changer for our mobile banking platform. Their attention to security and user experience resulted in a 300% increase in mobile app engagement.',
+      rating: 5,
+      image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=800'
+    },
+    {
+      id: 3,
+      name: 'David Chen',
+      position: 'CEO',
+      company: 'HealthTech Innovations',
+      content: 'The healthcare management system they built for us revolutionized patient care. Real-time data processing and intuitive UI led to a 60% reduction in administrative workload.',
+      rating: 5,
+      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800'
+    },
+    {
+      id: 4,
+      name: 'Emma Williams',
+      position: 'Head of Digital',
+      company: 'Retail Chain Global',
+      content: 'Their e-commerce platform overhaul increased our online sales by 250%. The AR product visualization feature alone boosted conversion rates by 35%. Exceptional work!',
+      rating: 5,
+      image: 'https://images.unsplash.com/photo-1494790108755-2616b786d4c1?auto=format&fit=crop&w=800'
+    },
+    {
+      id: 5,
+      name: 'Robert Kim',
+      position: 'Operations Director',
+      company: 'Manufacturing Corp',
+      content: 'The IoT solutions implemented by SJ Softwares optimized our production line, reducing downtime by 45% and increasing output by 30%. Their expertise in industrial tech is unmatched.',
+      rating: 5,
+      image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=800'
+    },
+    {
+      id: 6,
+      name: 'Lisa Anderson',
+      position: 'Marketing VP',
+      company: 'Media Group',
+      content: 'The custom CRM and analytics platform they developed gave us unprecedented insights into customer behavior. Marketing ROI increased by 180% within the first quarter.',
+      rating: 5,
+      image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=800'
     }
-    return stars;
+  ];
+
+  const stats = [
+    { value: '98%', label: 'Client Retention' },
+    { value: '4.9/5', label: 'Satisfaction Score' },
+    { value: '150+', label: 'Projects Delivered' },
+    { value: '24/7', label: 'Support' }
+  ];
+
+  useEffect(() => {
+    let interval;
+    if (autoPlay) {
+      interval = setInterval(() => {
+        setActiveSlide((prev) => (prev + 1) % testimonials.length);
+      }, 5000);
+    }
+    return () => clearInterval(interval);
+  }, [autoPlay, testimonials.length]);
+
+  const handleSlideChange = (index) => {
+    setActiveSlide(index);
+    setAutoPlay(false);
+    setTimeout(() => setAutoPlay(true), 10000);
+  };
+
+  const nextSlide = () => {
+    setActiveSlide((prev) => (prev + 1) % testimonials.length);
+    setAutoPlay(false);
+    setTimeout(() => setAutoPlay(true), 10000);
+  };
+
+  const prevSlide = () => {
+    setActiveSlide((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+    setAutoPlay(false);
+    setTimeout(() => setAutoPlay(true), 10000);
   };
 
   return (
-    <section className="testimonials">
+    <section id="testimonials" className="testimonials-section">
+      <div className="section-background">
+        <div className="testimonials-bg">
+          <div className="bg-quote bg-quote-1">"</div>
+          <div className="bg-quote bg-quote-2">"</div>
+          <div className="bg-quote bg-quote-3">"</div>
+        </div>
+      </div>
+
       <div className="container">
-        <div className="section-title">
-          <h2>Client Experiences</h2>
-          <p>
-            Don't just take our word for it. Here's what industry leaders say
-            about partnering with us.
+        {/* Section Header */}
+        <div className="section-header">
+          <div className="section-tag glass">
+            <span className="tag-dot"></span>
+            Client Success Stories
+          </div>
+          <h2 className="section-title">
+            <span className="title-line">Trusted by</span>
+            <span className="title-gradient">Industry Leaders</span>
+          </h2>
+          <p className="section-subtitle">
+            Hear from our satisfied clients about their transformative experiences with our solutions.
           </p>
         </div>
-        
-        <div className="testimonials-grid">
-          {testimonials.map((testimonial, index) => (
-            <div className="testimonial-card glass" key={index}>
-              <div className="testimonial-text">
-                {testimonial.text}
-              </div>
-              <div className="testimonial-author">
-               
-                <div className="author-info">
-                  <h4>{testimonial.name}</h4>
-                  <p>{testimonial.position}</p>
-                  <div className="testimonial-rating">
-                    {renderStars(testimonial.rating)}
-                  </div>
-                </div>
-              </div>
+
+        {/* Stats Overview */}
+        <div className="stats-overview">
+          {stats.map((stat, index) => (
+            <div key={index} className="stat-card glass">
+              <div className="stat-value">{stat.value}</div>
+              <div className="stat-label">{stat.label}</div>
             </div>
           ))}
+        </div>
+
+        {/* Testimonials Slider */}
+        <div className="testimonials-slider">
+          {/* Main Slider */}
+          <div className="slider-container" ref={sliderRef}>
+            <div 
+              className="slider-track"
+              style={{ transform: `translateX(-${activeSlide * 100}%)` }}
+            >
+              {testimonials.map((testimonial) => (
+                <div key={testimonial.id} className="slider-slide">
+                  <div className="testimonial-card glass">
+                    <div className="quote-icon">
+                      <FaQuoteLeft />
+                    </div>
+                    
+                    <div className="testimonial-content">
+                      <p className="testimonial-text">{testimonial.content}</p>
+                      
+                      <div className="testimonial-rating">
+                        {[...Array(testimonial.rating)].map((_, i) => (
+                          <FaStar key={i} className="star-icon" />
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="testimonial-author">
+                      <div className="author-image">
+                        <img src={testimonial.image} alt={testimonial.name} />
+                      </div>
+                      <div className="author-info">
+                        <h4 className="author-name">{testimonial.name}</h4>
+                        <div className="author-position">{testimonial.position}</div>
+                        <div className="author-company">{testimonial.company}</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Slider Navigation */}
+          <div className="slider-navigation">
+            <button 
+              className="nav-btn prev-btn glass"
+              onClick={prevSlide}
+              aria-label="Previous testimonial"
+            >
+              <FaChevronLeft />
+            </button>
+            
+            <div className="slider-dots">
+              {testimonials.map((_, index) => (
+                <button
+                  key={index}
+                  className={`slider-dot ${index === activeSlide ? 'active' : ''}`}
+                  onClick={() => handleSlideChange(index)}
+                  aria-label={`Go to testimonial ${index + 1}`}
+                >
+                  <div className="dot-progress"></div>
+                </button>
+              ))}
+            </div>
+            
+            <button 
+              className="nav-btn next-btn glass"
+              onClick={nextSlide}
+              aria-label="Next testimonial"
+            >
+              <FaChevronRight />
+            </button>
+          </div>
+        </div>
+
+        {/* Company Logos */}
+        <div className="company-logos glass">
+          <div className="logos-title">Trusted by leading companies</div>
+          <div className="logos-grid">
+            {['TechCorp', 'Global Finance', 'HealthTech', 'Retail Global', 'Manufacturing Inc', 'Media Group'].map((company, index) => (
+              <div key={index} className="logo-item">
+                <div className="logo-placeholder">
+                  <span className="logo-text">{company}</span>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

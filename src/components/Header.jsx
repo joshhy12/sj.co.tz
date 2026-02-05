@@ -1,128 +1,151 @@
 import React, { useState, useEffect } from 'react';
-import '../styles/App.css';
-import logo from '../images/logo.png';
+import { FaBars, FaTimes, FaChevronDown, FaUser, FaCode } from 'react-icons/fa';
+import { MdDesignServices, MdSupport } from 'react-icons/md';
+import { GiArtificialIntelligence } from 'react-icons/gi';
+import { IoIosGlobe } from 'react-icons/io';
+import '../styles/Header.css';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState('home');
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState(null);
+
+  const sections = [
+    { id: 'home', label: 'Home', icon: <FaCode /> },
+    { id: 'services', label: 'Services', icon: <MdDesignServices /> },
+    { id: 'projects', label: 'Projects', icon: <IoIosGlobe /> },
+    { id: 'about', label: 'About', icon: <FaUser /> },
+    { id: 'testimonials', label: 'Testimonials', icon: <MdSupport /> },
+    { id: 'contact', label: 'Contact', icon: <FaUser /> },
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 100);
-      
-      // Update active section based on scroll position
-      const sections = ['home', 'services', 'projects', 'about', 'contact', 'testimonials'];
-      const scrollPosition = window.scrollY + 100;
-      
-      for (const section of sections) {
-        const element = document.getElementById(section);
-        if (element) {
-          const { offsetTop, offsetHeight } = element;
-          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-            setActiveSection(section);
-            break;
-          }
-        }
-      }
+      setIsScrolled(window.scrollY > 50);
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handleMenuToggle = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
-
-  const scrollToSection = (e, sectionId) => {
-    e.preventDefault();
+  const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      const offset = 80; // Adjust this based on your header height
-      const elementPosition = element.offsetTop - offset;
+      const headerOffset = 80;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
       window.scrollTo({
-        top: elementPosition,
+        top: offsetPosition,
         behavior: 'smooth'
       });
-      setIsMenuOpen(false);
-      setActiveSection(sectionId);
     }
+    setMobileMenuOpen(false);
+    setActiveDropdown(null);
   };
 
   return (
-    <header id="header" className={isScrolled ? 'scrolled' : ''}>
-      <nav className="navbar">
-        <div className="logo">
-          <div className="logo-img">
-            <img 
-              src={logo} 
-              alt="SJ Softwares Logo" 
-              style={{ 
-                width: '100%', 
-                height: '100%', 
-                objectFit: 'contain',
-                borderRadius: '10px'
-              }} 
-            />
-          </div>
-          <div className="logo-text">
-            <h1>SJ <span>Softwares</span></h1>
+    <header className={`header ${isScrolled ? 'scrolled' : ''} ${mobileMenuOpen ? 'menu-open' : ''}`}>
+      <div className="header-container">
+        {/* Logo */}
+        <div className="logo-container" onClick={() => scrollToSection('home')}>
+          <div className="logo-glass">
+            <div className="logo-icon">
+              <FaCode className="logo-code-icon" />
+            </div>
+            <div className="logo-text">
+              <span className="logo-main">SJ</span>
+              <span className="logo-sub">SOFTWARES</span>
+            </div>
           </div>
         </div>
 
-        <ul className={`nav-links ${isMenuOpen ? 'active' : ''}`}>
-          <li>
-            <a 
-              href="#home" 
-              className={activeSection === 'home' ? 'active' : ''} 
-              onClick={(e) => scrollToSection(e, 'home')}
-            >
-              Home
-            </a>
-          </li>
-          <li>
-            <a 
-              href="#services" 
-              className={activeSection === 'services' ? 'active' : ''} 
-              onClick={(e) => scrollToSection(e, 'services')}
-            >
-              Services
-            </a>
-          </li>
-          <li>
-            <a 
-              href="#projects" 
-              className={activeSection === 'projects' ? 'active' : ''} 
-              onClick={(e) => scrollToSection(e, 'projects')}
-            >
-              Projects
-            </a>
-          </li>
-          <li>
-            <a 
-              href="#about" 
-              className={activeSection === 'about' ? 'active' : ''} 
-              onClick={(e) => scrollToSection(e, 'about')}
-            >
-              About
-            </a>
-          </li>
-          <li>
-            <a 
-              href="#contact" 
-              className={activeSection === 'contact' ? 'active' : ''} 
-              onClick={(e) => scrollToSection(e, 'contact')}
-            >
-              Contact
-            </a>
-          </li>
-        </ul>
+        {/* Desktop Navigation */}
+        <nav className="desktop-nav">
+          <ul className="nav-list">
+            {sections.map((section) => (
+              <li key={section.id}>
+                <button
+                  className="nav-link"
+                  onClick={() => scrollToSection(section.id)}
+                >
+                  <span className="nav-icon">{section.icon}</span>
+                  <span className="nav-label">{section.label}</span>
+                </button>
+              </li>
+            ))}
+          </ul>
 
-        <button className="mobile-menu-btn" onClick={handleMenuToggle}>
-          <i className={isMenuOpen ? 'fas fa-times' : 'fas fa-bars'}></i>
+          {/* CTA Button */}
+          <button 
+            className="header-cta glass"
+            onClick={() => scrollToSection('contact')}
+          >
+            <span>Start Project</span>
+            <GiArtificialIntelligence className="cta-icon" />
+          </button>
+        </nav>
+
+        {/* Mobile Menu Button */}
+        <button 
+          className="mobile-menu-btn glass"
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          aria-label="Toggle menu"
+        >
+          {mobileMenuOpen ? <FaTimes /> : <FaBars />}
         </button>
-      </nav>
+      </div>
+
+      {/* Mobile Menu Overlay */}
+      <div className={`mobile-overlay ${mobileMenuOpen ? 'active' : ''}`} onClick={() => setMobileMenuOpen(false)} />
+
+      {/* Mobile Menu */}
+      <div className={`mobile-menu ${mobileMenuOpen ? 'active' : ''}`}>
+        <div className="mobile-menu-header">
+          <div className="mobile-logo" onClick={() => scrollToSection('home')}>
+            <FaCode className="mobile-logo-icon" />
+            <span>SJ SOFTWARES</span>
+          </div>
+          <button 
+            className="mobile-close-btn"
+            onClick={() => setMobileMenuOpen(false)}
+            aria-label="Close menu"
+          >
+            <FaTimes />
+          </button>
+        </div>
+
+        <div className="mobile-nav">
+          {sections.map((section) => (
+            <button
+              key={section.id}
+              className="mobile-nav-link"
+              onClick={() => scrollToSection(section.id)}
+            >
+              <span className="mobile-nav-icon">{section.icon}</span>
+              <span className="mobile-nav-label">{section.label}</span>
+            </button>
+          ))}
+        </div>
+
+        <div className="mobile-cta">
+          <button 
+            className="mobile-cta-btn glass"
+            onClick={() => {
+              scrollToSection('contact');
+              setMobileMenuOpen(false);
+            }}
+          >
+            <span>Get Started</span>
+            <GiArtificialIntelligence className="mobile-cta-icon" />
+          </button>
+        </div>
+      </div>
+
+      {/* Floating Indicator */}
+      <div className="scroll-indicator">
+        <div className="scroll-dot"></div>
+      </div>
     </header>
   );
 };
