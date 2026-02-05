@@ -23,7 +23,8 @@
   border-radius: 50%;
   background: radial-gradient(circle, rgba(0, 242, 255, 0.05) 0%, transparent 70%);
   filter: blur(40px);
-  animation: float 8s ease-in-out infinite;
+  /* simplified: no continuous floating */
+  animation: none;
 }
 
 .service-bg-grid {
@@ -76,7 +77,8 @@
   height: 8px;
   background: var(--neon-blue);
   border-radius: 50%;
-  animation: pulse 2s infinite;
+  /* subtle indicator, no continuous animation */
+  animation: none;
 }
 
 .section-title {
@@ -120,14 +122,16 @@
   height: 400px;
   perspective: 1000px;
   cursor: pointer;
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  /* visible by default for a simpler, non-animated layout */
+  opacity: 1;
+  transform: none;
+  transition: transform 0.35s ease;
 }
 
+/* keep visible selector if ever used but default is visible */
 .service-card.visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: none;
 }
 
 .service-card.active .service-card-inner {
@@ -338,7 +342,7 @@
 /* Animations */
 @keyframes float {
   0%, 100% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-20px) rotate(180deg); }
+  50% { transform: translateY(-6px) rotate(0deg); }
 }
 
 @keyframes pulse {

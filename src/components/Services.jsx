@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import '../styles/Services.css';
 
 const Services = () => {
   const [activeService, setActiveService] = useState(0);
-  const [visibleServices, setVisibleServices] = useState([]);
 
   const services = [
     {
@@ -44,16 +43,6 @@ const Services = () => {
     }
   ];
 
-  useEffect(() => {
-    // Animate services in sequence
-    const timer = setTimeout(() => {
-      if (visibleServices.length < services.length) {
-        setVisibleServices(prev => [...prev, services[prev.length]]);
-      }
-    }, 200);
-    
-    return () => clearTimeout(timer);
-  }, [visibleServices.length]);
 
   return (
     <section id="services" className="services-section">
@@ -83,9 +72,8 @@ const Services = () => {
           {services.map((service, index) => (
             <div 
               key={index}
-              className={`service-card ${visibleServices.includes(service) ? 'visible' : ''} ${activeService === index ? 'active' : ''}`}
+              className={`service-card ${activeService === index ? 'active' : ''}`}
               onClick={() => setActiveService(index)}
-              onMouseEnter={() => setActiveService(index)}
             >
               <div className="service-card-inner">
                 {/* Card Front */}
