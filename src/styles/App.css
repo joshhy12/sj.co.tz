@@ -23,6 +23,17 @@
             box-sizing: border-box;
             font-family: 'Inter', sans-serif;
         }
+        
+        html {
+            overflow-x: hidden;
+            width: 100%;
+        }
+        
+        .App {
+            overflow-x: hidden;
+            width: 100%;
+            position: relative;
+        }
 
         body {
             background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 50%, var(--dark-red) 100%);
@@ -31,6 +42,8 @@
             overflow-x: hidden;
             min-height: 100vh;
             position: relative;
+            width: 100%;
+            max-width: 100vw;
         }
 
         body::before {
@@ -53,6 +66,7 @@
             z-index: -1;
             top: 0;
             left: 0;
+            overflow: hidden;
         }
 
         .glass {
@@ -65,10 +79,10 @@
         }
 
         .container {
-            width: 96%;
+            width: 100%;
             max-width: 1251px;
             margin: 0 auto;
-            padding: 0 10px;
+            padding: 0 20px;
         }
 
         /* Floating Elements */
@@ -119,7 +133,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 3%;
+            padding: 0 20px;
         }
 
         .logo {
@@ -143,9 +157,15 @@
         }
 
         .logo-text h1 {
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             font-weight: 700;
             color: var(--white);
+        }
+        
+        @media (min-width: 769px) {
+            .logo-text h1 {
+                font-size: 1.8rem;
+            }
         }
 
         .logo-text span {
@@ -201,6 +221,7 @@
             padding: 110px 0 50px;
             position: relative;
             overflow: hidden;
+            width: 100%;
         }
 
         .hero-content {
@@ -500,6 +521,7 @@
             flex-direction: column;
             position: relative;
             overflow: hidden;
+            word-wrap: break-word;
         }
 
         .service-card:hover {
@@ -618,6 +640,7 @@
             scroll-behavior: smooth;
             padding: 20px 0;
             scrollbar-width: none;
+            -webkit-overflow-scrolling: touch;
         }
 
         .projects-container::-webkit-scrollbar {
@@ -632,6 +655,7 @@
             flex-direction: column;
             position: relative;
             overflow: hidden;
+            word-wrap: break-word;
         }
 
         .project-card:hover {
@@ -949,6 +973,8 @@
             margin-top: 3rem;
             position: relative;
             z-index: 1;
+            width: 100%;
+            max-width: 100%;
         }
 
         .contact-info {
@@ -1073,6 +1099,8 @@
             grid-template-columns: 2fr 1fr 1fr 1fr;
             gap: 40px;
             margin-bottom: 40px;
+            width: 100%;
+            max-width: 100%;
         }
 
         .footer-col h3 {
@@ -1308,47 +1336,78 @@
         }
 
         @media (max-width: 768px) {
+            .navbar {
+                padding: 0 15px;
+            }
+            
+            .logo {
+                gap: 10px;
+            }
+            
+            .logo-text h1 {
+                font-size: 1.2rem;
+            }
+            
+            .logo-img {
+                width: 40px;
+                height: 40px;
+            }
+            
             .nav-links {
-        position: fixed;
-        top: 0;
-        left: -100%;
-        width: 75%;
-        height: 100vh;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 6rem 2rem 2rem;
-        transition: left 0.4s;
-        z-index: 1002; /* above header.scrolled */
-        background: rgba(31, 38, 135, 0.37); 
-        backdrop-filter: blur(18px);
-        -webkit-backdrop-filter: blur(18px);
-        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
-        border-right: 1px solid rgba(229, 57, 53, 0.15);
-    }
+                position: fixed;
+                top: 0;
+                left: -100%;
+                width: 75%;
+                max-width: 300px;
+                height: 100vh;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 6rem 2rem 2rem;
+                transition: left 0.4s;
+                z-index: 1002;
+                background: rgba(31, 38, 135, 0.95); 
+                backdrop-filter: blur(18px);
+                -webkit-backdrop-filter: blur(18px);
+                box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+                border-right: 1px solid rgba(229, 57, 53, 0.15);
+            }
 
-           .nav-links.active {
-        left: 0;
-    }
+            .nav-links.active {
+                left: 0;
+            }
 
-    .nav-links li {
-        margin: 1.5rem 0;
-    }
+            .nav-links li {
+                margin: 1.5rem 0;
+                width: 100%;
+            }
+            
+            .nav-links a {
+                font-size: 1.1rem;
+            }
 
-    .mobile-menu-btn {
-        display: block;
-        z-index: 1003; /* keep button above panel */
-    }
+            .mobile-menu-btn {
+                display: block;
+                z-index: 1003;
+            }
 
             .hero {
-        padding: 6rem 5% 4rem;
-    }
+                padding: 100px 20px 40px;
+                text-align: center;
+            }
+            
+            .hero-content {
+                max-width: 100%;
+            }
+            
+            .container {
+                padding: 0 15px;
+            }
 
-    /* Hide very large decorative floating elements on smaller screens */
-    .floating-1,
-    .floating-2 {
-        display: none;
-    }
+            .floating-1,
+            .floating-2 {
+                display: none;
+            }
 
 
 
@@ -1373,47 +1432,93 @@
 
             .services-grid {
                 grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .service-card {
+                padding: 25px;
             }
             
             .contact-container {
                 grid-template-columns: 1fr;
+                gap: 30px;
             }
             
             .footer-container {
                 grid-template-columns: 1fr;
+                gap: 30px;
             }
             
             .about-stats {
                 grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            section {
+                padding: 60px 0;
+            }
+            
+            .section-title {
+                margin-bottom: 40px;
             }
         }
 
         @media (max-width: 576px) {
             .hero h2 {
-                font-size: 1.8rem;
+                font-size: 1.6rem;
+                line-height: 1.3;
+            }
+            
+            .hero p {
+                font-size: 1rem;
             }
 
             .section-title h2 {
-                font-size: 1.8rem;
+                font-size: 1.6rem;
+            }
+            
+            .section-title p {
+                font-size: 1rem;
             }
 
             .about-content h2 {
-                font-size: 1.8rem;
+                font-size: 1.6rem;
             }
 
             .project-card {
                 min-width: 100%;
+                padding: 20px;
+            }
+            
+            .projects-container {
+                gap: 15px;
             }
 
             .contact-form {
-                padding: 2rem;
+                padding: 1.5rem;
+            }
+            
+            .form-group {
+                margin-bottom: 1.5rem;
             }
 
             .chat-button {
                 width: 60px;
                 height: 60px;
                 font-size: 1.5rem;
-                bottom: 30px;
-                right: 30px;
+                bottom: 20px;
+                right: 20px;
+            }
+            
+            .logo-text h1 {
+                font-size: 1rem;
+            }
+            
+            .container {
+                padding: 0 10px;
+            }
+            
+            section {
+                padding: 50px 0;
             }
         }
