@@ -136,78 +136,7 @@ const Testimonials = () => {
         </div>
 
         {/* Testimonials Slider */}
-        <div className="testimonials-slider">
-          {/* Main Slider */}
-          <div className="slider-container" ref={sliderRef}>
-            <div 
-              className="slider-track"
-              style={{ transform: `translateX(-${activeSlide * 100}%)` }}
-            >
-              {testimonials.map((testimonial) => (
-                <div key={testimonial.id} className="slider-slide">
-                  <div className="testimonial-card glass">
-                    <div className="quote-icon">
-                      <FaQuoteLeft />
-                    </div>
-                    
-                    <div className="testimonial-content">
-                      <p className="testimonial-text">{testimonial.content}</p>
-                      
-                      <div className="testimonial-rating">
-                        {[...Array(testimonial.rating)].map((_, i) => (
-                          <FaStar key={i} className="star-icon" />
-                        ))}
-                      </div>
-                    </div>
-
-                    <div className="testimonial-author">
-                      <div className="author-image">
-                        <img src={testimonial.image} alt={testimonial.name} />
-                      </div>
-                      <div className="author-info">
-                        <h4 className="author-name">{testimonial.name}</h4>
-                        <div className="author-position">{testimonial.position}</div>
-                        <div className="author-company">{testimonial.company}</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Slider Navigation */}
-          <div className="slider-navigation">
-            <button 
-              className="nav-btn prev-btn glass"
-              onClick={prevSlide}
-              aria-label="Previous testimonial"
-            >
-              <FaChevronLeft />
-            </button>
-            
-            <div className="slider-dots">
-              {testimonials.map((_, index) => (
-                <button
-                  key={index}
-                  className={`slider-dot ${index === activeSlide ? 'active' : ''}`}
-                  onClick={() => handleSlideChange(index)}
-                  aria-label={`Go to testimonial ${index + 1}`}
-                >
-                  <div className="dot-progress"></div>
-                </button>
-              ))}
-            </div>
-            
-            <button 
-              className="nav-btn next-btn glass"
-              onClick={nextSlide}
-              aria-label="Next testimonial"
-            >
-              <FaChevronRight />
-            </button>
-          </div>
-        </div>
+      
 
         {/* Company Logos */}
         <div className="company-logos glass">

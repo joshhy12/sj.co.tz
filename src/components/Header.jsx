@@ -53,10 +53,7 @@ const Header = () => {
             <div className="logo-icon">
               <FaCode className="logo-code-icon" />
             </div>
-            <div className="logo-text">
-              <span className="logo-main">SJ</span>
-              <span className="logo-sub">SOFTWARES</span>
-            </div>
+            
           </div>
         </div>
 
@@ -143,9 +140,7 @@ const Header = () => {
       </div>
 
       {/* Floating Indicator */}
-      <div className="scroll-indicator">
-        <div className="scroll-dot"></div>
-      </div>
+      
     </header>
   );
 };

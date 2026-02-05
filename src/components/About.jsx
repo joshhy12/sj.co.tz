@@ -38,32 +38,7 @@ const About = () => {
     }
   ];
 
-  const team = [
-    {
-      name: 'Sarah Johnson',
-      role: 'CEO & Founder',
-      expertise: 'Tech Strategy, Leadership',
-      image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=800'
-    },
-    {
-      name: 'Michael Chen',
-      role: 'CTO',
-      expertise: 'Software Architecture, AI/ML',
-      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800'
-    },
-    {
-      name: 'Emma Rodriguez',
-      role: 'Lead Designer',
-      expertise: 'UX/UI, Product Design',
-      image: 'https://images.unsplash.com/photo-1494790108755-2616b786d4c1?auto=format&fit=crop&w=800'
-    },
-    {
-      name: 'David Kim',
-      role: 'Senior Developer',
-      expertise: 'Full-stack, Blockchain',
-      image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=800'
-    }
-  ];
+  
 
   const values = [
     {
@@ -229,30 +204,7 @@ const About = () => {
         </div>
 
         {/* Team Section */}
-        <div className="team-section">
-          <h3 className="team-title">Meet Our Leadership</h3>
-          <div className="team-grid">
-            {team.map((member, index) => (
-              <div key={index} className="team-card glass">
-                <div className="team-image">
-                  <img src={member.image} alt={member.name} />
-                  <div className="team-overlay">
-                    <div className="social-links">
-                      <a href="#" className="social-link"><i className="fab fa-linkedin"></i></a>
-                      <a href="#" className="social-link"><i className="fab fa-twitter"></i></a>
-                      <a href="#" className="social-link"><i className="fab fa-github"></i></a>
-                    </div>
-                  </div>
-                </div>
-                <div className="team-info">
-                  <h4>{member.name}</h4>
-                  <div className="team-role">{member.role}</div>
-                  <div className="team-expertise">{member.expertise}</div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
+      
       </div>
     </section>
   );
