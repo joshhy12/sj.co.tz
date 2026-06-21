@@ -1,7 +1,7 @@
 .contact-section {
   position: relative;
   padding: 120px 0;
-  background: linear-gradient(180deg, #0a0a1a 0%, #1a1a2e 100%);
+  background: transparent;
   overflow: hidden;
 }
 

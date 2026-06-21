@@ -1,7 +1,7 @@
 .projects-section {
   position: relative;
   padding: 120px 0;
-  background: linear-gradient(180deg, #1a1a2e 0%, #0a0a1a 100%);
+  background: transparent;
   overflow: hidden;
 }
 

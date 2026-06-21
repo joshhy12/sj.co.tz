@@ -7,7 +7,7 @@ import About from './components/About';
 import Testimonials from './components/Testimonials';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
-import ChatButton from './components/ChatButton';
+
 import './styles/App.css';
 
 function App() {
@@ -215,8 +215,7 @@ function App() {
       {/* Footer */}
       <Footer />
       
-      {/* Chat Button */}
-      <ChatButton />
+
     </div>
   );
 }

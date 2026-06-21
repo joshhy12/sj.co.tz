@@ -135,7 +135,7 @@ const Header = () => {
             <div className="mobile-logo">
               <div className="mobile-logo-icon">
                 <img
-                  src="images/logo.png"
+                  src={logo}
                   alt="SJ Softwares Logo"
                   className="mobile-logo-img"
                   onError={(e) => {
@@ -176,7 +176,7 @@ const Header = () => {
           <div className="mobile-nav-logo">
             <div className="mobile-nav-logo-icon">
               <img
-                src="images/logo.png"
+                src={logo}
                 alt="SJ Softwares Logo"
                 className="mobile-nav-logo-img"
                 onError={(e) => {

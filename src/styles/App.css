@@ -29,7 +29,8 @@ html {
 
 body {
   font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
-  background: var(--dark-bg);
+  background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 50%, var(--dark-red) 100%);
+  background-attachment: fixed;
   color: var(--white);
   overflow-x: hidden;
   line-height: 1.6;
