@@ -1,72 +1,79 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import { FaExternalLinkAlt, FaTimes, FaLayerGroup, FaMobileAlt, FaGlobe, FaBolt, FaArrowRight, FaCode } from 'react-icons/fa';
 import '../styles/Projects.css';
 
 const Projects = () => {
   const [activeFilter, setActiveFilter] = useState('all');
-  const [hoveredProject, setHoveredProject] = useState(null);
+  const [selectedProject, setSelectedProject] = useState(null);
 
   const projects = [
     {
       id: 1,
-      title: 'Nexus E-commerce Platform',
-      description: 'A revolutionary online marketplace with AI-powered recommendations, blockchain payment integration, and immersive AR product visualization.',
+      title: 'Nexus E-Commerce Platform',
+      description: 'A high-concurrency online marketplace featuring AI-driven personalized product recommendations, real-time order tracking, and multi-currency payment integration.',
+      fullSpecs: 'Architected with React, Node.js microservices, MongoDB, and Redis cache layer. Handled 50k+ daily transactions with 99.98% service reliability.',
       category: 'web',
-      tech: ['React', 'Node.js', 'MongoDB', 'Blockchain'],
-      link: 'https://example-ecommerce.com',
+      tech: ['React 19', 'Node.js', 'MongoDB', 'Redis', 'Stripe API'],
+      link: 'https://example.com',
       image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=800'
     },
     {
       id: 2,
-      title: 'MediTrack Pro',
-      description: 'Comprehensive healthcare solution with telemedicine capabilities, IoT device integration, and secure patient data management.',
+      title: 'MediTrack Pro Mobile App',
+      description: 'Comprehensive healthcare portal enabling remote patient telemetry, encrypted video consultations, and IoT health sensor integration.',
+      fullSpecs: 'Built with React Native and Python FastAPI on AWS. HIPAA compliant data vault with WebRTC streaming and push alerts.',
       category: 'mobile',
-      tech: ['React Native', 'Python', 'AWS', 'IoT'],
-      link: 'https://example-healthcare.com',
+      tech: ['React Native', 'Python', 'AWS IoT', 'WebRTC', 'FastAPI'],
+      link: 'https://example.com',
       image: 'https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=800'
     },
     {
       id: 3,
-      title: 'Quantum Corporate Portal',
-      description: 'An interactive corporate website with WebGL animations, real-time data visualization, and personalized content delivery.',
+      title: 'Quantum WebGL Corporate Portal',
+      description: 'Interactive enterprise web platform showcasing 3D product visualizations, real-time analytics dashboards, and multi-lingual content delivery.',
+      fullSpecs: 'Leveraged Next.js 14, Three.js WebGL shaders, GraphQL, and edge caching for sub-500ms load times worldwide.',
       category: 'web',
-      tech: ['Next.js', 'Three.js', 'GraphQL', 'Redis'],
-      link: 'https://example-corporate.com',
+      tech: ['Next.js', 'Three.js', 'GraphQL', 'Tailwind', 'Vercel Edge'],
+      link: 'https://example.com',
       image: 'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=800'
     },
     {
       id: 4,
-      title: 'NeoBank Mobile',
-      description: 'Next-generation banking application with biometric security, cryptocurrency support, and AI-driven financial insights.',
+      title: 'NeoBank Digital FinTech Suite',
+      description: 'Next-generation mobile banking experience with biometric hardware security, instant peer-to-peer payments, and AI budget forecasting.',
+      fullSpecs: 'Developed with Flutter & Firebase backend. Integrated biometrics, bank grade 256-bit AES encryption, and automated fraud prevention models.',
       category: 'mobile',
-      tech: ['Flutter', 'Firebase', 'Machine Learning', 'Blockchain'],
-      link: 'https://example-banking.com',
+      tech: ['Flutter', 'Firebase', 'Machine Learning', 'FinTech API'],
+      link: 'https://example.com',
       image: 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?auto=format&fit=crop&w=800'
     },
     {
       id: 5,
-      title: 'Smart Factory IoT Suite',
-      description: 'Industrial IoT platform for real-time monitoring, predictive maintenance, and automation in manufacturing plants.',
+      title: 'Smart Factory Industrial IoT Hub',
+      description: 'Industrial automation telemetry suite providing predictive machine failure alerts, sensor metric processing, and plant line control.',
+      fullSpecs: 'Processed over 1M telemetry data points per minute via MQTT protocol, Docker containers, Kubernetes orchestration, and TensorFlow anomaly detectors.',
       category: 'iot',
-      tech: ['Python', 'Kubernetes', 'TensorFlow', 'MQTT'],
-      link: 'https://example-iot.com',
+      tech: ['Python', 'Kubernetes', 'TensorFlow', 'MQTT', 'Docker'],
+      link: 'https://example.com',
       image: 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=800'
     },
     {
       id: 6,
-      title: 'EdTech Learning Platform',
-      description: 'Interactive educational platform with adaptive learning algorithms, virtual classrooms, and progress tracking.',
+      title: 'EdTech Virtual Campus Suite',
+      description: 'Adaptive learning classroom system with live interactive whiteboards, automatic attendance monitoring, and automated assignment grading.',
+      fullSpecs: 'Built using Vue 3, Laravel REST API, PostgreSQL, and WebRTC video mesh architecture for up to 10,000 simultaneous virtual classroom attendees.',
       category: 'web',
-      tech: ['Vue.js', 'Laravel', 'WebRTC', 'PostgreSQL'],
-      link: 'https://example-edtech.com',
+      tech: ['Vue.js', 'Laravel', 'WebRTC', 'PostgreSQL', 'Docker'],
+      link: 'https://example.com',
       image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=800'
     }
   ];
 
   const filters = [
-    { id: 'all', label: 'All Projects' },
-    { id: 'web', label: 'Web Development' },
-    { id: 'mobile', label: 'Mobile Apps' },
-    { id: 'iot', label: 'IoT Solutions' }
+    { id: 'all', label: 'All Work', icon: <FaLayerGroup /> },
+    { id: 'web', label: 'Web Systems', icon: <FaGlobe /> },
+    { id: 'mobile', label: 'Mobile Apps', icon: <FaMobileAlt /> },
+    { id: 'iot', label: 'IoT & AI', icon: <FaBolt /> }
   ];
 
   const filteredProjects = activeFilter === 'all' 
@@ -74,127 +81,142 @@ const Projects = () => {
     : projects.filter(project => project.category === activeFilter);
 
   return (
-    <section id="projects" className="projects-section">
-      <div className="section-background">
-        <div className="projects-bg-shapes">
-          <div className="shape shape-1"></div>
-          <div className="shape shape-2"></div>
-          <div className="shape shape-3"></div>
-        </div>
-      </div>
-
+    <section id="projects" className="projects-section section-padding">
       <div className="container">
         {/* Section Header */}
         <div className="section-header">
-          <div className="section-tag glass">
+          <div className="section-tag">
             <span className="tag-dot"></span>
-            Our Portfolio
+            Featured Engineering Showcase
           </div>
           <h2 className="section-title">
-            <span className="title-line">Innovative</span>
-            <span className="title-gradient">Projects Delivered</span>
+            <span className="title-line">Proven Track Record of</span>{' '}
+            <span className="title-gradient">Digital Excellence</span>
           </h2>
           <p className="section-subtitle">
-            Explore our portfolio of cutting-edge digital solutions that have transformed businesses across industries.
+            Explore selected case studies demonstrating our engineering depth, technical innovation, and business impact.
           </p>
         </div>
 
-        {/* Filter Buttons */}
-        <div className="projects-filter glass">
+        {/* Category Filter Pills */}
+        <div className="projects-filter-pills">
           {filters.map(filter => (
             <button
               key={filter.id}
-              className={`filter-btn ${activeFilter === filter.id ? 'active' : ''}`}
+              className={`filter-pill ${activeFilter === filter.id ? 'active' : ''}`}
               onClick={() => setActiveFilter(filter.id)}
             >
-              {filter.label}
-              {activeFilter === filter.id && <span className="filter-indicator"></span>}
+              <span className="filter-icon">{filter.icon}</span>
+              <span>{filter.label}</span>
             </button>
           ))}
         </div>
 
         {/* Projects Grid */}
         <div className="projects-grid">
-          {filteredProjects.map((project, index) => (
-            <div 
-              key={project.id}
-              className="project-card"
-              onMouseEnter={() => setHoveredProject(project.id)}
-              onMouseLeave={() => setHoveredProject(null)}
-              style={{ animationDelay: `${index * 0.1}s` }}
-            >
-              {/* Project Image */}
-              <div className="project-image-container">
-                <div 
-                  className="project-image"
-                  style={{ backgroundImage: `url(${project.image})` }}
-                />
-                <div className="project-overlay">
-                  <div className="project-tech">
-                    {project.tech.map(tech => (
-                      <span key={tech} className="tech-tag">{tech}</span>
-                    ))}
-                  </div>
+          {filteredProjects.map((project) => (
+            <div key={project.id} className="project-card glass-card">
+              <div className="project-image-box">
+                <img src={project.image} alt={project.title} loading="lazy" />
+                <div className="project-image-overlay">
+                  <button 
+                    className="btn btn-secondary btn-sm"
+                    onClick={() => setSelectedProject(project)}
+                  >
+                    View Details
+                  </button>
                 </div>
-                <div className="project-category">
-                  <span className={`category-badge ${project.category}`}>
-                    {project.category === 'web' && '🌐 Web'}
-                    {project.category === 'mobile' && '📱 Mobile'}
-                    {project.category === 'iot' && '⚡ IoT'}
-                  </span>
-                </div>
+                <span className={`project-badge ${project.category}`}>
+                  {project.category.toUpperCase()}
+                </span>
               </div>
 
-              {/* Project Content */}
-              <div className="project-content glass">
+              <div className="project-content">
                 <h3 className="project-title">{project.title}</h3>
                 <p className="project-description">{project.description}</p>
                 
-                <div className="project-actions">
+                <div className="project-tech-stack">
+                  {project.tech.map((tech, tIdx) => (
+                    <span key={tIdx} className="tech-badge">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+
+                <div className="project-card-actions">
+                  <button 
+                    className="project-spec-link"
+                    onClick={() => setSelectedProject(project)}
+                  >
+                    <FaCode /> Architecture & Details
+                  </button>
                   <a 
                     href={project.link} 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="project-link"
+                    className="project-live-link"
+                    title="Live Preview"
                   >
-                    <span>View Live Demo</span>
-                    <i className="fas fa-external-link-alt"></i>
+                    <FaExternalLinkAlt />
                   </a>
-                  <button className="project-details-btn">
-                    <i className="fas fa-plus"></i>
-                    Details
-                  </button>
                 </div>
-              </div>
-
-              {/* Project Hover Effect */}
-              <div className={`project-hover-effect ${hoveredProject === project.id ? 'active' : ''}`}>
-                <div className="hover-glow" style={{ background: `linear-gradient(45deg, ${getCategoryColor(project.category)}, transparent)` }}></div>
               </div>
             </div>
           ))}
         </div>
 
-        {/* View More Button */}
-        <div className="projects-cta">
-          <button className="view-more-btn glass">
-            <span>View Complete Portfolio</span>
-            <i className="fas fa-arrow-right"></i>
-          </button>
-        </div>
+        {/* Project Details Modal */}
+        {selectedProject && (
+          <div className="modal-backdrop" onClick={() => setSelectedProject(null)}>
+            <div className="modal-content glass-card" onClick={e => e.stopPropagation()}>
+              <button className="modal-close-btn" onClick={() => setSelectedProject(null)}>
+                <FaTimes />
+              </button>
+
+              <div className="modal-header-image">
+                <img src={selectedProject.image} alt={selectedProject.title} />
+                <div className="modal-title-overlay">
+                  <span className="project-badge">{selectedProject.category.toUpperCase()}</span>
+                  <h2>{selectedProject.title}</h2>
+                </div>
+              </div>
+
+              <div className="modal-body">
+                <div className="modal-section">
+                  <h4>Overview</h4>
+                  <p>{selectedProject.description}</p>
+                </div>
+
+                <div className="modal-section">
+                  <h4>Technical Architecture & Specifications</h4>
+                  <p>{selectedProject.fullSpecs}</p>
+                </div>
+
+                <div className="modal-section">
+                  <h4>Technologies Used</h4>
+                  <div className="project-tech-stack">
+                    {selectedProject.tech.map((t, idx) => (
+                      <span key={idx} className="tech-badge glow">{t}</span>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="modal-actions">
+                  <a 
+                    href="#contact" 
+                    className="btn btn-glow"
+                    onClick={() => setSelectedProject(null)}
+                  >
+                    Build Similar Solution <FaArrowRight />
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </section>
   );
-};
-
-// Helper function for category colors
-const getCategoryColor = (category) => {
-  const colors = {
-    web: '#00f2ff',
-    mobile: '#9c27b0',
-    iot: '#00c853'
-  };
-  return colors[category] || '#2196f3';
 };
 
 export default Projects;

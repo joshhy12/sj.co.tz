@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { FaCode, FaGlobe, FaPalette, FaHeadset, FaShieldAlt, FaMobileAlt, FaCheckCircle, FaArrowRight, FaRocket } from 'react-icons/fa';
 import '../styles/Services.css';
 
 const Services = () => {
@@ -6,64 +7,70 @@ const Services = () => {
 
   const services = [
     {
-      icon: 'fas fa-code',
-      title: 'Custom Software Development',
-      description: 'Tailored solutions built from scratch to address your unique business challenges and streamline operations. We create scalable, robust applications using cutting-edge technologies.',
-      features: ['Enterprise Solutions', 'API Integration', 'Legacy System Modernization', 'Performance Optimization']
+      icon: <FaCode />,
+      title: 'Custom Software Engineering',
+      tagline: 'Tailored Enterprise Systems',
+      description: 'Scalable, high-performance architecture built to solve complex business challenges, streamline operations, and automate enterprise workflows.',
+      features: ['Microservices & API Integration', 'Cloud Native Architecture', 'Legacy Modernization', 'Real-time Analytics Engines'],
+      color: '#00f2ff'
     },
     {
-      icon: 'fas fa-globe',
-      title: 'Web Development',
-      description: 'High-performance websites and web applications with immersive user experiences and cutting-edge functionality. From responsive designs to complex web platforms.',
-      features: ['React/Next.js', 'Progressive Web Apps', 'E-commerce Solutions', 'Real-time Applications']
+      icon: <FaGlobe />,
+      title: 'Web & SaaS Solutions',
+      tagline: 'Immersive Web Applications',
+      description: 'High-speed React and Next.js applications engineered for maximum performance, SEO dominance, conversion optimization, and user retention.',
+      features: ['React & Next.js Ecosystem', 'Progressive Web Apps (PWA)', 'Headless E-commerce Platforms', 'Real-time WebSockets Integration'],
+      color: '#6366f1'
     },
     {
-      icon: 'fas fa-paint-brush',
-      title: 'UI/UX Design',
-      description: 'Visually stunning designs that communicate your brand identity and captivate your audience across all platforms. User-centered design approach for maximum engagement.',
-      features: ['User Research', 'Wireframing', 'Prototyping', 'Design Systems']
-    },
-    {
-      icon: 'fas fa-headset',
-      title: 'IT Consultancy',
-      description: 'Strategic guidance to optimize your technology infrastructure and align IT with your business objectives. Digital transformation roadmaps and technology stack selection.',
-      features: ['Tech Strategy', 'Digital Transformation', 'Cloud Migration', 'Security Audits']
-    },
-    {
-      icon: 'fas fa-shield-alt',
-      title: 'Cybersecurity Solutions',
-      description: 'Comprehensive security solutions to protect your digital assets. From vulnerability assessments to complete security infrastructure implementation.',
-      features: ['Penetration Testing', 'Security Monitoring', 'Compliance', 'Incident Response']
-    },
-    {
-      icon: 'fas fa-mobile-alt',
+      icon: <FaMobileAlt />,
       title: 'Mobile App Development',
-      description: 'Engaging, intuitive mobile applications that connect you with your customers wherever they are. Cross-platform and native development for iOS and Android.',
-      features: ['Native iOS/Android', 'React Native', 'App Store Optimization', 'Push Notifications']
+      tagline: 'iOS & Android Native Apps',
+      description: 'Feature-rich, intuitive mobile applications delivering seamless user experiences, push notification engines, and offline-first capabilities.',
+      features: ['Cross-Platform React Native', 'Native iOS (Swift) & Android (Kotlin)', 'Biometric Auth & Security', 'In-App Payment Gateways'],
+      color: '#ec4899'
+    },
+    {
+      icon: <FaPalette />,
+      title: 'UI/UX Design Systems',
+      tagline: 'Human-Centered Design',
+      description: 'Stunning visual interfaces, interactive wireframes, and standardized design tokens crafted to captivate audiences and boost engagement rates.',
+      features: ['User Experience Research', 'Interactive Figma Prototypes', 'Design System Architecture', 'Accessibility Compliance (WCAG)'],
+      color: '#3b82f6'
+    },
+    {
+      icon: <FaHeadset />,
+      title: 'IT & Cloud Consultancy',
+      tagline: 'Strategic Tech Leadership',
+      description: 'Expert technology guidance, DevOps pipeline automation, infrastructure auditing, and digital transformation roadmaps for growing companies.',
+      features: ['Cloud Migration (AWS / GCP / Azure)', 'DevOps & CI/CD Automation', 'System Performance Audits', 'CTO Advisory Services'],
+      color: '#10b981'
+    },
+    {
+      icon: <FaShieldAlt />,
+      title: 'Cybersecurity & Compliance',
+      tagline: 'Enterprise Security Defense',
+      description: 'End-to-end security audits, threat monitoring, penetration testing, and data compliance protocols to safeguard your business assets.',
+      features: ['Penetration Testing & Audits', 'Data Encryption & Zero Trust', 'GDPR & ISO Compliance', '24/7 Security Monitoring'],
+      color: '#f59e0b'
     }
   ];
 
-
   return (
-    <section id="services" className="services-section">
-      <div className="section-background">
-        <div className="service-bg-circle"></div>
-        <div className="service-bg-grid"></div>
-      </div>
-
+    <section id="services" className="services-section section-padding">
       <div className="container">
         {/* Section Header */}
         <div className="section-header">
-          <div className="section-tag glass">
+          <div className="section-tag">
             <span className="tag-dot"></span>
-            Our Expertise
+            Our Specialized Expertise
           </div>
           <h2 className="section-title">
-            <span className="title-line">Comprehensive</span>
-            <span className="title-gradient">Digital Solutions</span>
+            <span className="title-line">Cutting-Edge</span>{' '}
+            <span className="title-gradient">Digital Services</span>
           </h2>
           <p className="section-subtitle">
-            We deliver end-to-end software development services that transform ideas into powerful digital products.
+            Empowering organizations with world-class engineering, elegant design, and transformative technology solutions.
           </p>
         </div>
 
@@ -72,78 +79,69 @@ const Services = () => {
           {services.map((service, index) => (
             <div 
               key={index}
-              className={`service-card ${activeService === index ? 'active' : ''}`}
-              onClick={() => setActiveService(index)}
+              className={`service-card glass-card ${activeService === index ? 'active' : ''}`}
+              onMouseEnter={() => setActiveService(index)}
             >
-              <div className="service-card-inner">
-                {/* Card Front */}
-                <div className="service-card-front glass">
-                  <div className="service-icon-container">
-                    <div className="service-icon-bg" style={{ background: `linear-gradient(135deg, ${getColor(index)}40, transparent)` }}></div>
-                    <i className={`${service.icon} service-icon`} style={{ color: getColor(index) }}></i>
-                  </div>
-                  <h3 className="service-title">{service.title}</h3>
-                  <p className="service-description">{service.description}</p>
-                  
-                  <div className="service-cta">
-                    <span className="service-learn-more">Learn More</span>
-                    <i className="fas fa-arrow-right" style={{ color: getColor(index) }}></i>
-                  </div>
+              <div className="service-card-header">
+                <div 
+                  className="service-icon-box"
+                  style={{ 
+                    background: `${service.color}15`, 
+                    color: service.color,
+                    borderColor: `${service.color}30` 
+                  }}
+                >
+                  {service.icon}
                 </div>
-
-                {/* Card Back (Hover/Active State) */}
-                <div className="service-card-back glass">
-                  <div className="service-features">
-                    <h4>Key Features</h4>
-                    <ul>
-                      {service.features.map((feature, idx) => (
-                        <li key={idx}>
-                          <i className="fas fa-check" style={{ color: getColor(index) }}></i>
-                          {feature}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  <button className="service-action-btn" style={{ background: getColor(index) + '20', color: getColor(index) }}>
-                    View Case Studies
-                  </button>
-                </div>
+                <span className="service-tagline" style={{ color: service.color }}>
+                  {service.tagline}
+                </span>
               </div>
 
-              {/* Glow Effect */}
-              <div className="service-glow" style={{ background: getColor(index) }}></div>
+              <h3 className="service-title">{service.title}</h3>
+              <p className="service-description">{service.description}</p>
+
+              <div className="service-features-list">
+                <h4>Core Capabilities</h4>
+                <ul>
+                  {service.features.map((feature, fIdx) => (
+                    <li key={fIdx}>
+                      <FaCheckCircle className="check-icon" style={{ color: service.color }} />
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="service-card-footer">
+                <a href="#contact" className="service-action-link" style={{ color: service.color }}>
+                  <span>Discuss Project</span>
+                  <FaArrowRight className="arrow-icon" />
+                </a>
+              </div>
+
+              {/* Glowing Accent Line */}
+              <div 
+                className="service-glow-line" 
+                style={{ background: `linear-gradient(90deg, ${service.color}, transparent)` }}
+              ></div>
             </div>
           ))}
         </div>
 
-        {/* Services Stats */}
-        <div className="services-stats glass">
-          <div className="stat-item">
-            <div className="stat-number">99<span>%</span></div>
-            <div className="stat-label">Client Satisfaction</div>
+        {/* Bottom Banner */}
+        <div className="services-cta-banner glass-card">
+          <div className="banner-content">
+            <h3>Need a Custom Solution Designed for Your Enterprise?</h3>
+            <p>Our senior architects are ready to review your requirements and provide a technical roadmap.</p>
           </div>
-          <div className="stat-item">
-            <div className="stat-number">150<span>+</span></div>
-            <div className="stat-label">Projects Completed</div>
-          </div>
-          <div className="stat-item">
-            <div className="stat-number">50<span>+</span></div>
-            <div className="stat-label">Team Experts</div>
-          </div>
-          <div className="stat-item">
-            <div className="stat-number">24<span>/7</span></div>
-            <div className="stat-label">Support Available</div>
-          </div>
+          <a href="#contact" className="btn btn-glow">
+            Book Free Consultation <FaRocket />
+          </a>
         </div>
       </div>
     </section>
   );
-};
-
-// Helper function to assign colors
-const getColor = (index) => {
-  const colors = ['#00f2ff', '#9c27b0', '#00c853', '#ff9800', '#e91e63', '#2196f3'];
-  return colors[index % colors.length];
 };
 
 export default Services;

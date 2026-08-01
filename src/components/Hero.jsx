@@ -1,60 +1,90 @@
 import React from 'react';
+import { FaRocket, FaArrowRight, FaCode, FaMobileAlt, FaBrain, FaCheckCircle, FaShieldAlt } from 'react-icons/fa';
 import '../styles/Hero.css';
 
 const Hero = () => {
   return (
     <section className="hero" id="home">
-        <div className="container">
-            <div className="hero-content">
-                <h2>Next-Gen IT Solutions for the Digital Era</h2>
-                <p>
-                    We craft cutting-edge custom software, immersive web experiences, and
-                    transformative IT strategies to propel your business into the future.
-                </p>
-                <div className="cta-buttons">
-                    <a href="#contact" className="btn">Start Your Project <i className="fas fa-rocket"></i></a>
-                    <a href="#services" className="btn btn-secondary">Explore Services <i className="fas fa-arrow-right"></i></a>
-                </div>
-                
-                {/* Mobile-friendly cards (visible only on mobile) */}
-                <div className="mobile-cards">
-                    <div className="mobile-card glass">
-                        <i className="fas fa-globe"></i>
-                        <h3>Web Development</h3>
-                        <p>Professional websites</p>
-                    </div>
-                    <div className="mobile-card glass">
-                        <i className="fas fa-mobile-alt"></i>
-                        <h3>Mobile Apps</h3>
-                        <p>iOS & Android</p>
-                    </div>
-                    <div className="mobile-card glass">
-                        <i className="fas fa-cogs"></i>
-                        <h3>IT Consultancy</h3>
-                        <p>Expert advice</p>
-                    </div>
-                </div>
+      <div className="container hero-grid">
+        <div className="hero-content">
+          <div className="hero-badge glass-card">
+            <span className="badge-sparkle">✨</span>
+            <span>Next-Gen Enterprise IT Solutions</span>
+          </div>
+
+          <h1 className="hero-title">
+            Architecting <span className="text-gradient-cyan">Intelligent</span> Digital Systems
+          </h1>
+
+          <p className="hero-description">
+            We craft cutting-edge custom software, high-performance web applications, and AI-driven IT strategies to scale modern enterprises into the future.
+          </p>
+
+          <div className="hero-actions">
+            <a href="#contact" className="btn btn-glow">
+              Start Your Project <FaRocket className="btn-icon" />
+            </a>
+            <a href="#projects" className="btn btn-secondary">
+              Explore Portfolio <FaArrowRight className="btn-icon" />
+            </a>
+          </div>
+
+          <div className="hero-stats-row">
+            <div className="stat-pill glass-card">
+              <FaCheckCircle className="stat-icon cyan" />
+              <div>
+                <strong>99.9%</strong>
+                <span>System Uptime</span>
+              </div>
             </div>
+            <div className="stat-pill glass-card">
+              <FaShieldAlt className="stat-icon indigo" />
+              <div>
+                <strong>150+</strong>
+                <span>Projects Delivered</span>
+              </div>
+            </div>
+          </div>
         </div>
-        
-        {/* Desktop floating cards (hidden on mobile) */}
+
+        {/* 3D Floating Tech Cards */}
         <div className="hero-visual">
-            <div className="floating-card glass">
-                <i className="fas fa-globe"></i>
-                <h3>Web Development</h3>
-                <p>Professional websites</p>
+          <div className="visual-glow-background"></div>
+          
+          <div className="hero-floating-card card-1 glass-card">
+            <div className="icon-wrapper cyan-glow">
+              <FaCode />
             </div>
-            <div className="floating-card glass">
-                <i className="fas fa-mobile-alt"></i>
-                <h3>Mobile Apps</h3>
-                <p>iOS & Android</p>
+            <div className="card-info">
+              <h3>Web & SaaS Engineering</h3>
+              <p>React, Node.js & Cloud</p>
             </div>
-            <div className="floating-card glass">
-                <i className="fas fa-cogs"></i>
-                <h3>IT Consultancy</h3>
-                <p>Expert advice</p>
+            <span className="card-tag">High Performance</span>
+          </div>
+
+          <div className="hero-floating-card card-2 glass-card">
+            <div className="icon-wrapper indigo-glow">
+              <FaMobileAlt />
             </div>
+            <div className="card-info">
+              <h3>Mobile Development</h3>
+              <p>iOS & Android Apps</p>
+            </div>
+            <span className="card-tag">Cross-Platform</span>
+          </div>
+
+          <div className="hero-floating-card card-3 glass-card">
+            <div className="icon-wrapper pink-glow">
+              <FaBrain />
+            </div>
+            <div className="card-info">
+              <h3>AI & IT Consultancy</h3>
+              <p>Smart Business Automation</p>
+            </div>
+            <span className="card-tag">Enterprise AI</span>
+          </div>
         </div>
+      </div>
     </section>
   );
 };

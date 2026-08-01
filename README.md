@@ -1,70 +1,110 @@
-# Getting Started with Create React App
+# SJ Softwares (`sj.co.tz`)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+> **Next-Gen IT Solutions for the Digital Era** — Custom software, web & mobile applications, AI integration, and IT consultancy services.
 
-## Available Scripts
+`sj.co.tz` is a modern, responsive single-page web application built with **React** featuring a sleek futuristic dark glassmorphism design, dynamic particle animations (`particles.js`), interactive project showcases, testimonials, and contact features.
+
+---
+
+## 🚀 Features
+
+- 🎨 **Futuristic UI/UX**: Dark mode styling with cyan/teal neon accents, glassmorphism containers, and reactive particle background effects.
+- 📱 **Fully Responsive**: Mobile-first architecture with custom mobile navigation drawer and dynamic touch layouts.
+- ⚡ **Interactive Components**:
+  - **Hero Section**: Dynamic call-to-action buttons and floating service cards.
+  - **Services Overview**: Interactive service cards detailing Web Development, Mobile Apps, Cloud Solutions, and Consultancy.
+  - **Projects Showcase**: Filterable portfolio showcase with project details and live preview triggers.
+  - **About & Milestones**: Company timeline counter animation showcasing history and core values.
+  - **Testimonials & Contact**: Interactive client feedback slider/cards and contact form integration.
+  - **Floating Action / Chat**: Quick access contact button with options for direct WhatsApp message or email inquiry.
+
+---
+
+## 🛠️ Technology Stack
+
+- **Frontend Framework**: [React 19](https://react.dev/)
+- **Build Tool / Scripting**: `react-scripts` (Create React App workflow)
+- **Styling**: Modular Vanilla CSS with CSS custom properties (variables)
+- **Icons**: [`react-icons`](https://react-icons.github.io/react-icons/) (FontAwesome / Material icons)
+- **Interactive Visuals**: [`particles.js`](https://vincentgarreau.com/particles.js/) background interactive network animation
+
+---
+
+## 📂 Project Structure
+
+```text
+sj.co.tz/
+├── public/               # Static assets & HTML template
+├── src/
+│   ├── components/       # React UI Components
+│   │   ├── Header.jsx       # Navigation bar & mobile drawer menu
+│   │   ├── Hero.jsx         # Hero section & interactive cards
+│   │   ├── Services.jsx     # Service offerings grid
+│   │   ├── Projects.jsx     # Portfolio & project highlights
+│   │   ├── About.jsx        # Company background, stats & timeline
+│   │   ├── Testimonials.jsx # Client reviews & ratings
+│   │   ├── Contact.jsx      # Contact form & location information
+│   │   ├── ChatButton.jsx   # Floating interactive quick action button
+│   │   └── Footer.jsx       # Footer links & copyright details
+│   ├── styles/           # Modular CSS files corresponding to components
+│   │   ├── App.css
+│   │   ├── Header.css
+│   │   ├── Hero.css
+│   │   ├── Services.css
+│   │   ├── Projects.css
+│   │   ├── About.css
+│   │   ├── Testimonials.css
+│   │   └── Contact.css
+│   ├── images/           # Local graphics, logos, and image assets
+│   ├── App.js            # Main application wrapper & particles initialization
+│   ├── index.js          # React DOM entry point
+│   └── index.css         # Global design tokens and reset styles
+├── package.json          # Project metadata & npm dependencies
+└── README.md             # Project documentation
+```
+
+---
+
+## 🏁 Getting Started
+
+### Prerequisites
+
+Ensure you have Node.js and npm installed on your system:
+- **Node.js**: v16.0.0 or higher
+- **npm**: v8.0.0 or higher
+
+### Installation
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/joshhy12/sj.co.tz.git
+   cd sj.co.tz
+   ```
+
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+
+---
+
+## 📜 Available Scripts
 
 In the project directory, you can run:
 
 ### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Runs the app in development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser. The page reloads automatically when code changes are saved.
 
 ### `npm run build`
-
 Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Optimizes and minifies the code for production deployment.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### `npm test`
+Launches the test runner in interactive watch mode.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
 
-### `npm run eject`
+## 📄 License
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This project is proprietary and maintained by **SJ Softwares**. All rights reserved.
