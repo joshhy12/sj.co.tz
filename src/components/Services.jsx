@@ -77,18 +77,18 @@ const Services = () => {
         {/* Services Grid */}
         <div className="services-grid">
           {services.map((service, index) => (
-            <div 
+            <div
               key={index}
               className={`service-card glass-card ${activeService === index ? 'active' : ''}`}
               onMouseEnter={() => setActiveService(index)}
             >
               <div className="service-card-header">
-                <div 
+                <div
                   className="service-icon-box"
-                  style={{ 
-                    background: `${service.color}15`, 
+                  style={{
+                    background: `${service.color}15`,
                     color: service.color,
-                    borderColor: `${service.color}30` 
+                    borderColor: `${service.color}30`
                   }}
                 >
                   {service.icon}
@@ -121,8 +121,8 @@ const Services = () => {
               </div>
 
               {/* Glowing Accent Line */}
-              <div 
-                className="service-glow-line" 
+              <div
+                className="service-glow-line"
                 style={{ background: `linear-gradient(90deg, ${service.color}, transparent)` }}
               ></div>
             </div>
@@ -130,15 +130,7 @@ const Services = () => {
         </div>
 
         {/* Bottom Banner */}
-        <div className="services-cta-banner glass-card">
-          <div className="banner-content">
-            <h3>Need a Custom Solution Designed for Your Enterprise?</h3>
-            <p>Our senior architects are ready to review your requirements and provide a technical roadmap.</p>
-          </div>
-          <a href="#contact" className="btn btn-glow">
-            Book Free Consultation <FaRocket />
-          </a>
-        </div>
+
       </div>
     </section>
   );

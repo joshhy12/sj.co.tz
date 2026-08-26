@@ -1,28 +1,32 @@
 import React, { useState, useEffect } from 'react';
-import { FaHome, FaMap, FaBuilding, FaRoute, FaInfoCircle, FaCog, FaBars, FaTimes } from 'react-icons/fa';
+import { FaHome, FaMap, FaBuilding, FaRoute, FaInfoCircle, FaCog, FaBars, FaTimes, FaLaptopCode } from 'react-icons/fa';
 import '../styles/Header.css';
 import logo from '../images/logo.png';
 
-const Header = () => {
+const Header = ({ activePage = 'home', onNavigate }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [currentPage, setCurrentPage] = useState('home');
+  const [currentPage, setCurrentPage] = useState(activePage);
+
+  useEffect(() => {
+    setCurrentPage(activePage);
+  }, [activePage]);
 
   const sections = [
     { id: 'home', label: 'Home', icon: <FaHome /> },
+    { id: 'website-builder', label: 'Build Site', icon: <FaLaptopCode /> },
     { id: 'services', label: 'Services', icon: <FaCog /> },
     { id: 'projects', label: 'Projects', icon: <FaBuilding /> },
     { id: 'about', label: 'About', icon: <FaInfoCircle /> },
-    { id: 'testimonials', label: 'Testimonials', icon: <FaMap /> },
     { id: 'contact', label: 'Contact', icon: <FaRoute /> },
   ];
 
   const pageConfig = {
     'home': { title: 'Home', icon: <FaHome /> },
+    'website-builder': { title: 'Build Website', icon: <FaLaptopCode /> },
     'services': { title: 'Services', icon: <FaCog /> },
     'projects': { title: 'Projects', icon: <FaBuilding /> },
     'about': { title: 'About', icon: <FaInfoCircle /> },
-    'testimonials': { title: 'Testimonials', icon: <FaMap /> },
     'contact': { title: 'Contact', icon: <FaRoute /> }
   };
 
@@ -59,16 +63,20 @@ const Header = () => {
 
   const scrollToSection = (sectionId) => {
     setCurrentPage(sectionId);
-    const element = document.getElementById(sectionId);
-    if (element) {
-      const offset = 80; // Header height
-      const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
-      const offsetPosition = elementPosition - offset;
-      
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
+    if (onNavigate) {
+      onNavigate(sectionId);
+    } else {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        const offset = 80; // Header height
+        const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+        const offsetPosition = elementPosition - offset;
+        
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+      }
     }
     setMobileMenuOpen(false);
   };
@@ -119,9 +127,9 @@ const Header = () => {
 
             {/* Admin Button */}
             <div className="admin-button">
-              <button className="btn-admin" onClick={() => scrollToSection('contact')}>
-                <FaCog />
-                <span>Get Started</span>
+              <button className="btn-admin" onClick={() => scrollToSection('website-builder')}>
+                <FaLaptopCode />
+                <span>Build Website</span>
               </button>
             </div>
           </div>
@@ -214,9 +222,9 @@ const Header = () => {
         </div>
         
         <div className="mobile-admin-section">
-          <button className="mobile-admin-btn" onClick={() => scrollToSection('contact')}>
-            <FaCog />
-            <span>Get Started</span>
+          <button className="mobile-admin-btn" onClick={() => scrollToSection('website-builder')}>
+            <FaLaptopCode />
+            <span>Build Website</span>
           </button>
         </div>
       </div>

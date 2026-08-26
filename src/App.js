@@ -1,16 +1,25 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import Services from './components/Services';
 import Projects from './components/Projects';
 import About from './components/About';
-import Testimonials from './components/Testimonials';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import BuildWebsitePage from './pages/BuildWebsitePage';
 
 import './styles/App.css';
 
 function App() {
+  const [activeView, setActiveView] = useState(() => {
+    const hash = window.location.hash.replace('#', '');
+    const path = window.location.pathname;
+    if (hash === 'website-builder' || hash === 'build-website' || path === '/build-website') {
+      return 'website-builder';
+    }
+    return 'home';
+  });
+
   useEffect(() => {
     // Initialize particles.js
     if (window.particlesJS) {
@@ -124,63 +133,51 @@ function App() {
     // Handle initial page load with hash and browser navigation
     const handleHashNavigation = () => {
       const hash = window.location.hash.replace('#', '');
-      if (hash) {
-        const element = document.getElementById(hash);
-        if (element) {
-          const offset = 80; // Header height
-          const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
-          const offsetPosition = elementPosition - offset;
-          
-          window.scrollTo({
-            top: offsetPosition,
-            behavior: 'smooth'
-          });
-        }
+      if (hash === 'website-builder' || hash === 'build-website') {
+        setActiveView('website-builder');
+      } else if (hash) {
+        setActiveView('home');
+        setTimeout(() => {
+          const element = document.getElementById(hash);
+          if (element) {
+            const offset = 80;
+            const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+            window.scrollTo({
+              top: elementPosition - offset,
+              behavior: 'smooth'
+            });
+          }
+        }, 100);
       }
     };
 
-    // Handle initial load
-    setTimeout(() => {
-      handleHashNavigation();
-    }, 100);
-
-    // Handle hash changes (back/forward navigation)
     window.addEventListener('hashchange', handleHashNavigation);
-    
-    // Improved smooth scrolling for anchor links
-    const handleAnchorClick = (e) => {
-      const anchor = e.target && e.target.closest ? e.target.closest('a') : null;
-      if (!anchor) return;
-
-      const href = anchor.getAttribute('href');
-      if (!href || !href.startsWith('#') || href === '#') return;
-
-      const targetId = href.replace('#', '');
-      const targetElement = document.getElementById(targetId);
-      if (!targetElement) return;
-
-      e.preventDefault();
-      const offset = 80; // Adjust based on your header height
-      const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
-      const offsetPosition = targetPosition - offset;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
-
-      // Update URL hash without triggering hashchange
-      window.history.pushState(null, null, href);
-    };
-
-    document.addEventListener('click', handleAnchorClick);
-    
-    // Cleanup
-    return () => {
-      window.removeEventListener('hashchange', handleHashNavigation);
-      document.removeEventListener('click', handleAnchorClick);
-    };
+    return () => window.removeEventListener('hashchange', handleHashNavigation);
   }, []);
+
+  const handleNavigate = (targetId) => {
+    if (targetId === 'website-builder' || targetId === 'build-website') {
+      setActiveView('website-builder');
+      window.history.pushState(null, null, '#website-builder');
+      window.scrollTo(0, 0);
+    } else {
+      setActiveView('home');
+      window.history.pushState(null, null, `#${targetId}`);
+      setTimeout(() => {
+        const element = document.getElementById(targetId);
+        if (element) {
+          const offset = 80;
+          const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+          window.scrollTo({
+            top: elementPosition - offset,
+            behavior: 'smooth'
+          });
+        } else if (targetId === 'home') {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      }, 100);
+    }
+  };
 
   return (
     <div className="App">
@@ -192,30 +189,33 @@ function App() {
       <div className="floating-element floating-2"></div>
       
       {/* Header */}
-      <Header />
-      
-      {/* Hero Section */}
-      <Hero />
-      
-      {/* Services Section */}
-      <Services />
-      
-      {/* Projects Section */}
-      <Projects />
-      
-      {/* About Section */}
-      <About />
-      
-      {/* Testimonials Section */}
-      <Testimonials />
-      
-      {/* Contact Section */}
-      <Contact />
+      <Header activePage={activeView} onNavigate={handleNavigate} />
+
+      {activeView === 'website-builder' ? (
+        /* SEPARATE BUILD WEBSITE DEDICATED PAGE */
+        <BuildWebsitePage onNavigateHome={() => handleNavigate('home')} />
+      ) : (
+        /* MAIN LANDING PAGE SECTIONS */
+        <>
+          {/* Hero Section */}
+          <Hero onNavigate={handleNavigate} />
+          
+          {/* Services Section */}
+          <Services />
+          
+          {/* Projects Section */}
+          <Projects />
+          
+          {/* About Section */}
+          <About />
+          
+          {/* Contact Section */}
+          <Contact />
+        </>
+      )}
       
       {/* Footer */}
       <Footer />
-      
-
     </div>
   );
 }

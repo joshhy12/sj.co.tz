@@ -2,7 +2,16 @@ import React from 'react';
 import { FaRocket, FaArrowRight, FaCode, FaMobileAlt, FaBrain, FaCheckCircle, FaShieldAlt } from 'react-icons/fa';
 import '../styles/Hero.css';
 
-const Hero = () => {
+const Hero = ({ onNavigate }) => {
+  const handleBuildWebsiteClick = (e) => {
+    e.preventDefault();
+    if (onNavigate) {
+      onNavigate('website-builder');
+    } else {
+      window.location.hash = 'website-builder';
+    }
+  };
+
   return (
     <section className="hero" id="home">
       <div className="container hero-grid">
@@ -21,9 +30,9 @@ const Hero = () => {
           </p>
 
           <div className="hero-actions">
-            <a href="#contact" className="btn btn-glow">
-              Start Your Project <FaRocket className="btn-icon" />
-            </a>
+            <button onClick={handleBuildWebsiteClick} className="btn btn-glow">
+              Build Your Website <FaRocket className="btn-icon" />
+            </button>
             <a href="#projects" className="btn btn-secondary">
               Explore Portfolio <FaArrowRight className="btn-icon" />
             </a>
