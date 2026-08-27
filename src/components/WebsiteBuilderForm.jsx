@@ -185,11 +185,29 @@ ${formData.customNotes || 'None specified'}
 ==========================================`;
   };
 
-  const handleCopySummary = () => {
+  const handleCopySummary = async () => {
     const summaryText = generateSpecSummary();
-    navigator.clipboard.writeText(summaryText);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 3000);
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        await navigator.clipboard.writeText(summaryText);
+      } else {
+        // Fallback for HTTP / non-secure contexts (e.g. local IP network access)
+        const textArea = document.createElement('textarea');
+        textArea.value = summaryText;
+        textArea.style.position = 'fixed';
+        textArea.style.left = '-999999px';
+        textArea.style.top = '-999999px';
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+      }
+      setCopied(true);
+      setTimeout(() => setCopied(false), 3000);
+    } catch (err) {
+      console.error('Failed to copy specification text: ', err);
+    }
   };
 
   return (
