@@ -51,7 +51,7 @@ const BuildWebsitePage = ({ onNavigateHome }) => {
 
       {/* Main Requirement Form Section */}
       <div className="page-form-wrapper">
-        <WebsiteBuilderForm />
+        <WebsiteBuilderForm isStandalonePage={true} />
       </div>
     </div>
   );

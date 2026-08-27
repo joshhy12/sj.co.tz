@@ -144,8 +144,9 @@
 
 .hero-floating-card {
   position: absolute;
-  width: 280px;
-  padding: 22px;
+  width: 270px;
+  max-width: calc(100% - 20px);
+  padding: 20px;
   border-radius: 20px;
   display: flex;
   flex-direction: column;
@@ -153,6 +154,7 @@
   backdrop-filter: blur(20px);
   z-index: 2;
   transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  box-sizing: border-box;
 }
 
 .hero-floating-card:hover {
@@ -161,21 +163,21 @@
 }
 
 .card-1 {
-  top: 30px;
-  left: 20px;
-  transform: rotate(-4deg);
+  top: 15px;
+  left: 0px;
+  transform: rotate(-3deg);
 }
 
 .card-2 {
-  top: 170px;
-  right: 10px;
-  transform: rotate(5deg);
+  top: 165px;
+  right: 0px;
+  transform: rotate(3deg);
 }
 
 .card-3 {
-  bottom: 20px;
-  left: 60px;
-  transform: rotate(-2deg);
+  bottom: 15px;
+  left: 30px;
+  transform: rotate(-1deg);
 }
 
 .icon-wrapper {

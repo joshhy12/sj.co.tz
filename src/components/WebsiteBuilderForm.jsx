@@ -27,10 +27,13 @@ import {
 } from 'react-icons/fa';
 import '../styles/WebsiteBuilderForm.css';
 
-const WebsiteBuilderForm = () => {
+const WebsiteBuilderForm = ({ isStandalonePage = false }) => {
   const [currentStep, setCurrentStep] = useState(1);
   const [submitted, setSubmitted] = useState(false);
   const [copied, setCopied] = useState(false);
+  
+  // ... rest of state
+
 
   // Form State
   const [formData, setFormData] = useState({
@@ -213,18 +216,20 @@ ${formData.customNotes || 'None specified'}
   return (
     <section className="website-builder-section" id="website-builder">
       <div className="container">
-        <div className="section-header">
-          <div className="section-tag">
-            <span className="tag-dot"></span>
-            <span>Custom Website Planner</span>
+        {!isStandalonePage && (
+          <div className="section-header">
+            <div className="section-tag">
+              <span className="tag-dot"></span>
+              <span>Custom Website Planner</span>
+            </div>
+            <h2 className="section-title">
+              Build Your <span className="title-gradient">Website Specification</span>
+            </h2>
+            <p className="section-subtitle">
+              Tell us exactly what you need in your website—from AI integrations and payment gateways to custom pages and design preferences. We'll bring your vision to life!
+            </p>
           </div>
-          <h2 className="section-title">
-            Build Your <span className="title-gradient">Website Specification</span>
-          </h2>
-          <p className="section-subtitle">
-            Tell us exactly what you need in your website—from AI integrations and payment gateways to custom pages and design preferences. We'll bring your vision to life!
-          </p>
-        </div>
+        )}
 
         {/* Wizard Container */}
         <div className="builder-container glass-card">
